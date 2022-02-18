@@ -1,0 +1,73 @@
+<div class="p-5">
+    <div class="card card-custom pr-5 pl-5 gutter-b example example-compact">
+
+        <!--<div class="card-header">
+            
+        </div>-->
+        <!--begin::Form-->
+        <form autocomplete="off" style="padding-bottom: 14px;">
+            <!-- (ngSubmit)="onSubmit()" -->
+
+            <div class="row mt-3">
+                <div class="col-md-12 col-lg-12" style="margin-bottom: 5px;">
+
+                    <div class="font-size-sm col-md-12" style="padding: 0px;">
+
+
+                        <div class="row ">
+                            <div class="col-md-4">
+
+                                <!-- <div class="kt-input-icon kt-input-icon--left"> -->
+                                <div style="float: left; padding: 10px;">
+                                    <img alt="img" src="./assets/media/logos/calender.png">
+                                </div>
+                                <mat-form-field appearance="outline" appearance="fill">
+                                    <mat-label>From Date</mat-label>
+                                    <input matInput autocomplete="off" (dateChange)="changeDateLoad('FromDate')" [(ngModel)]="FromDate" name="FromDate" [matDatepicker]="picker1" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker1">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                                <!-- </div> (dateChange)="changeDateLoad('ToDate')" -->
+
+                            </div>
+                            <div class="col-md-4">
+                                <div style="float: left; padding: 10px;">
+                                    <img alt="img" src="./assets/media/logos/calender.png">
+                                </div>
+
+                                <mat-form-field appearance="outline" appearance="fill">
+                                    <mat-label>To Date</mat-label>
+                                    <input matInput autocomplete="off" [(ngModel)]="ToDate" (dateChange)="changeDateLoad('ToDate')" name="ToDate" [matDatepicker]="picker2" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker2">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                </mat-form-field>
+
+
+
+
+                            </div>
+                            <div class="col-md-2 p-5">
+                                <button (click)="onSubmit()" class="btn btn-primary">Save</button>
+                                <!-- <button (click)="onClear()"  class="btn btn-danger">Clear</button> -->
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+        <!--end::Form-->
+    </div>
+</div>

@@ -1,0 +1,42 @@
+fieldset {
+    border: 1px solid #ccc;
+}
+
+legend {
+    color: #151515;
+    padding: 3px 10px;
+    width: auto;
+    margin-left: 25px;
+    font-size: 16px
+}
+
+input {
+    margin: 5px;
+}
+
+.mat-tab-body-content {
+    padding-top: 1px !important;
+}
+
+.i_test {
+    padding: 7px 1px 0;
+    color: #1a1a27;
+}
+
+.right-title-details {
+    padding: 6px;
+    color: #fff;
+    text-align: right;
+}
+
+// .gradient-bg {
+//     background: linear-gradient(to right, #ffc837, #ff8008);
+// }
+.title-heding-col {
+    padding: 7px 18px 0;
+    color: #1a1a27;
+}
+
+.gradient-head-bg {
+    background: linear-gradient(to right, #141e30, #243b55);
+}

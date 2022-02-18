@@ -1,0 +1,324 @@
+<div class="card card-custom">
+    <div class="card-body">
+        <div class="row border">
+            <div class="col-md-3">
+                <h3 class="m-3"></h3>
+            </div>
+
+
+
+            <div class="col-md-2">
+
+                <h3 class="m-3">{{this.TestData[0]?.TESTMST_Name}}</h3>
+              
+            </div>
+        </div>
+
+        <div style="height: 98%;" class="row border p-2">
+            <div class="col-md-3 p-0">
+
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Patient Details</legend>
+                        <div>
+                            <div class="row p-2">
+                                <div class="col-md">
+                                    <label>Date</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Date}}</label>
+
+                                </div>
+                                <div class="col-md">
+                                    <label>Lab No</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.labno}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row p-2">
+                                <div class="col-md">
+                                    <label>Patient Name</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Name}}</label>
+                                </div>
+                                <div class="col-md">
+                                    <label>Gender</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Gender}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row p-2">
+                                <div class="col-md">
+                                    <label>Age</label>
+                                    <label class="form-control form-control-sm">
+                                            YY  {{this.TestData[0]?.yy}}
+                                          MM  {{  this.TestData[0]?.month}}
+                                           DD   {{ this.TestData[0]?.dd}}
+                                              </label>
+                                </div>
+                                <div class="col-md">
+                                    <label>Contact No</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Telno}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row p-2">
+                                <div class="col-md">
+                                    <label>Ref by(1)</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_DoctorName}}</label>
+                                </div>
+                                <div class="col-md">
+                                    <label>Ref by(2)</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.DoctorName2}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row p-2">
+                                <div class="col-md">
+                                    <label>Collection Center</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.CENTER_Name}}</label>
+                                </div>
+                                <div class="col-md">
+                                    <label>Sample Date</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.Sample_Date}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row p-2">
+                                <div class="col">
+                                    <label>Rate</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.DOCHDR_Rate}}</label>
+                                </div>
+                                <div class="col">
+
+                                    <label class="checkbox">
+                                        <input type="checkbox" [value]="this.TestData[0]?.DOCHDR_bCommission" name="Checkboxes1" disabled/>
+                                        <span class="mr-5"></span>
+                                        Commission ?
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row m-2">
+                                <mat-radio-group>
+                                    <mat-radio-button [checked]="rbtnReSample" (change)="radioChange($event)" value="C" [disabled]="this.TestData[0]?.MarkComplete === 'Y'">Re-Sample</mat-radio-button>
+                                    <mat-radio-button [checked]="rbtnReRun" (change)="radioChange($event)" value="R" [disabled]="this.TestData[0]?.MarkComplete === 'Y'">Re-Run</mat-radio-button>
+                                    <mat-radio-button [checked]="rbtnValidate" (change)="radioChange($event)" value="V" [disabled]="this.TestData[0]?.MarkComplete === 'Y'">Validate</mat-radio-button>
+                                    <!-- <mat-radio-button [checked]="rbtnAuntheticate" (change)="radioChange($event)" value="Y">Auntheticate</mat-radio-button> -->
+                                </mat-radio-group>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <mat-label>Upload file </mat-label>
+                                <div class="uppy-Root uppy-FileInput-container">
+                                    <input type="file" #file placeholder="Choose file" class="form-control form-control-sm" multiple (change)="uploadFile($event)">
+
+                                </div>
+                            </div>
+                            <div [style.display]="ReSample" class="row">
+                                <mat-form-field class="col-md-11 m-2 ">
+                                    <textarea [value]="this.TestData[0].ResampleReason" type="text" placeholder="Re-Sample Reason" matInput (change)="ChangeDDlValue(null,$event.target.value,'autoReSample')" (input)="ChangeDDlValue(null,$event.target.value,'autoReSample')" [matAutocomplete]="autoReSample"></textarea>
+                                    <mat-autocomplete (optionSelected)="ChangeDDlValue(null,$event.option.value,'autoReSample')" #autoReSample="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredReason | async" [value]="option.NarrationText">
+                                            {{option.ResampleReason}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field class="col-md-11 m-2 ">
+                                    <textarea [value]="this.TestData[0].DOCHDR_sDescription" type="text" placeholder="Narration" matInput (change)="ChangeDDlValue(null,$event.target.value,'autoNarration')" (input)="ChangeDDlValue(null,$event.target.value,'autoNarration')" [matAutocomplete]="autoNarration"></textarea>
+                                    <mat-autocomplete (optionSelected)="ChangeDDlValue(null,$event.option.value,'autoNarration')" #autoNarration="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredNaration | async" [value]="option.NarrationText">
+                                            {{option.NarrationText}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="p-2">
+
+                                <fieldset>
+                                    <legend>Hospitalization Details</legend>
+
+                                    <div class="row p-2">
+                                        <div class="col-md">
+                                            <label>word no</label>
+                                            <label class="form-control form-control-sm"> {{this.TestData[0]?.WardNo}}</label>
+                                        </div>
+
+                                        <div class="col-md">
+                                            <label>OPD / IPD</label>
+                                            <label class="form-control form-control-sm"> {{this.TestData[0]?.HOSPTYPE}}</label>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <label>Urgent</label>
+
+                            <div class="p-2">
+                                <fieldset>
+                                    <div class="row p-1">
+                                        <div class="col-md">
+                                            <label>Total Amount</label>
+                                            <label class="form-control form-control-sm"> {{this.TestData[0]?.BillAmount}}</label>
+                                        </div>
+                                        <div class="col-md">
+                                            <label>Paid Amount</label>
+                                            <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_AmountPaid}}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2"><label class="ml-2">Balance</label></div>
+                                        <div class="col-md-9 ml-4">
+                                            <label class="form-control form-control-sm"> {{this.TestData[0]?.BillAmount - this.TestData[0]?.PATIENT_AmountPaid }}</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class=" table table-responsive border">
+                    <table class="table ">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th  scope="col " > Sr No</th>
+                                <th  scope="col " >Name </th>
+                                <th  scope="col ">Value</th>
+                                <th  scope="col" [style.display]="ReRun"> Select for Re-Run</th>
+                                
+                                <th  scope="col ">Normal Value</th>
+                                <th scope="col ">Unit</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Emp of TestData ; index as i ">
+                                <td >{{i +1 }}</td>
+                                <td >{{Emp?.TESTDET_FieldName}}</td>
+                                <td *ngIf="Emp.TESTDET_FieldType!=1">
+                                  
+                                        <!-- <input class="form-control " (input)="ValueChanged(Emp,$event.target.value)" [ngModel]="Emp?.DOCDET_tFieldValue"> -->
+                                        <div *ngIf="Emp.TESTDET_FieldType==0"><input [style.color]="Emp.MaxValue< Emp?.DOCDET_tFieldValue?'Red':Emp.MinValue> Emp?.DOCDET_tFieldValue?'Red':'Black' " id="{{'input'+i}}" class="form-control " (input)="ValueChanged(Emp,$event.target.value,i)" (keypress)="($event.charCode >= 46 && $event.charCode <= 58)"
+                                            [ngModel]="Emp?.DOCDET_tFieldValue" [disabled]="Emp.MarkComplete === 'Y'"   ></div>
+                                    
+
+                                   
+                                    <div *ngIf="Emp.TESTDET_FieldType==2">{{Emp?.DOCDET_tFieldValue}}</div>
+                                    
+
+                                </td>
+
+                                <!-- <td *ngIf="Emp.TESTDET_FieldType==1" colspan="2">
+                                    <mat-form-field class="col-12">
+                                        <input [value]="Emp?.DOCDET_tFieldValue" type="text" placeholder="Select Value" matInput (change)="ChangeDDlValue(Emp,$event.target.value,'auto')" (input)="ChangeDDlValue(Emp,$event.target.value,'auto')" [matAutocomplete]="auto">
+                                        <mat-autocomplete (optionSelected)="ChangeDDlValue(Emp,$event.option.value,'auto')" #auto="matAutocomplete" >
+                                            <mat-option *ngFor="let option of Emp?.PREDEFVAL | async" [value]="option.PREDEFVAL_Value" >
+                                                {{option.PREDEFVAL_Value}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+
+                                </td> -->
+
+                                <td *ngIf="Emp.TESTDET_FieldType==1" colspan="2">
+                                    <mat-form-field class="col-12">
+                                        <input [value]="Emp?.DOCDET_tFieldValue" type="text" placeholder="Select Value" matInput (change)="ChangeDDlValue(Emp,$event.target.value,'auto')" (input)="ChangeDDlValue(Emp,$event.target.value,'auto')" [matAutocomplete]="auto">
+                                        <mat-autocomplete (optionSelected)="ChangeDDlValue(Emp,$event.option.value,'auto')" #auto="matAutocomplete">
+                                            <mat-option *ngFor="let option of Emp?.PREDEFVAL | async" [value]="option.PREDEFVAL_Value">{{option.PREDEFVAL_Value}}</mat-option>
+                                                
+                                            
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+
+                                </td>
+                                <td [style.display]="ReRun" >
+                                    <label class="kt-checkbox">
+                                        <input (change)="onCheckboxClick(Emp,$event)"  [checked]="Emp?.Rerun=='True'" type="checkbox" >
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td *ngIf="Emp.TESTDET_FieldType!=1">{{Emp?.TESTDET_NormalValue }}</td>
+                                <td *ngIf="Emp.TESTDET_sUnit!=1">{{Emp?.TESTDET_sUnit }}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <div class=" m-3">
+                            <button class="btn btn-sm btn-primary">
+                                Delta Checking
+                            </button>
+                        </div>
+
+
+                        <div class=" m-3">
+                            <button (click)="OnSubmit(this.TestData[0]?.Patient_Id)" class="btn btn-sm btn-primary" [disabled]="this.TestData[0]?.MarkComplete === 'Y'">
+                                Save
+                            </button>
+                        </div>
+
+
+                        <div class=" m-3">
+                            <button (click)="Back(this.TestData[0]?.Patient_Id)" class="btn btn-sm btn-primary">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class=" m-3">
+                            <button class="btn btn-sm btn-primary">
+                                Show prescription
+                            </button>
+                        </div>
+                        <div class=" m-3">
+                            <button class="btn btn-sm btn-primary">
+                                Attach Kit Image
+                            </button>
+                        </div>
+
+                        <div class=" m-3">
+                            <button class="btn btn-sm btn-primary">
+                                Show TAT
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+         <!-- <a (click)="Add()" class="btn btn-brand mr-2 btn-sm bot-sm" >click</a> 
+         <jw-modal id="custom-modal-2">
+            <div>
+                <div class="row">
+                    <h4 class="col-5 h4-tit">Warning:  Not Validate value !</h4> <br>
+                  
+                    <h4 class="col-5 h4-tit">Please enter  validate value</h4>
+                    <input input="text" formControlName="txtMobileNumber" class=" form-control col-6"> 
+                   
+                    
+                </div>
+            </div>
+            <div class="row  mt-4">
+                <a (click)="saveMobile();" id="check1" name="check1" class="btn btn-brand mr-2 btn-sm bot-sm">Save</a>
+                <a (click)="closeMobile();" class="btn btn-brand mr-2  btn-sm bot-sm">Close</a> 
+            </div>
+        </jw-modal> -->
+        
+
+        <!--end: Datatable-->
+    </div>
+</div>

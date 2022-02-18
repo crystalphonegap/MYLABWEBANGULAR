@@ -1,0 +1,171 @@
+
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home" style="padding: 7px 1px 0; color: #1a1a27;"></i></a>
+        <a href="../Admin/PathologyTestList" class="title-heding-col">
+            <h6>Patient Id List</h6>
+        </a> <i class="fas fa-chevron-right i_test"></i> <span style="padding: 7px 18px 0;">  Patient Add</span>
+
+
+
+    </div>
+</div>
+<div class="p-5">
+    <div class="card card-custom p-3 gutter-b example example-compact">
+        <!--<div class="card-header">
+            <b class="card-title">Test Master</b>
+            <div class="card-toolbar">
+                <div class="example-tools justify-content-center">
+                </div>
+            </div>
+        </div>-->
+        <!--begin::Form-->
+        <form autocomplete="off" class="form">
+            <fieldset class="p-4">
+                <legend>Patient Information</legend>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group row">
+                            <div class="col-md-6 col-lg-6">
+                                <label>Patient Code : </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter Patient Code" />
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <label>Patient Name : </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter Patient Name" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-size-sm col-md-12 p-0">
+
+                    <mat-card style="box-shadow: none;" class="p-0">
+                        <mat-card-content>
+                            <mat-tab-group class="demo-tab-group">
+                                <mat-tab label="Address">
+                                    <div class="demo-tab-content">
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>From Date</mat-label>
+                                                    <input matInput autocomplete="off" [matDatepicker]="picker1">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker1></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+
+
+
+
+                                            <div class="col-md-4">
+                                                <label>Age</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Gender</label>
+                                                <br>
+                                                <select formControlName="EMPLOYEE_Gender" class="form-control-sm form-control">
+                                                        <option>Female</option>
+                                                        <option>Male</option>
+                                                    </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <label>Mobile No</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Email Address</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address 1</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Address 2</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <label>region</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Country</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+
+
+                                            <div class="col-md-6">
+                                                <label>Pin Code</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Telephone No</label>
+                                                <br>
+                                                <input type="text" class="form-control-sm form-control">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="row">
+                    <div class="col-md-12  col-lg-12">
+                        <div class="row p-5">
+                            <div class="col-md-6" style="padding-left: 28px;">
+                                <button type="submit" class="btn btn-primary mr-5">Done</button>
+                                <button class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </fieldset>
+        </form>
+
+        <!--end::Form-->
+    </div>
+</div>

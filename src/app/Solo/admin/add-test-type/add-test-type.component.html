@@ -1,0 +1,69 @@
+ 
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home i_test" ></i></a>
+        <a href="../Admin/TestTypeList" class="title-heding-col">
+            <h6>Test Type List</h6>
+        </a> <i class="fas fa-chevron-right i_test"></i> <span class="title-heding-col">  Add Test Type</span>
+
+
+
+    </div>
+</div>
+<div class="p-3">
+    <div class="card card-custom pr-5 pl-5 pt-5 gutter-b example example-compact">
+
+        <!--<div class="card-header">
+            <b class="card-title">Create Doctor</b>
+        </div>-->
+        <!--begin::Form-->
+        <form autocomplete="off" class="form" [formGroup]="DataAdd" >
+
+
+            <div class="row">
+
+                <mat-form-field appearance="fill" class="col-md-12">
+                    <mat-label> Test Type Name *</mat-label>
+                    <input type="tel" matInput formControlName="TestTypeName" placeholder="Test Type Name ">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="col-md-12">
+                    <mat-label>Discription</mat-label>
+                    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="3" formControlName="TestTypeDescription" cdkAutosizeMaxRows="5" placeholder="Discription"></textarea>
+                </mat-form-field>
+
+                <div class="col-md-12  col-lg-12">
+                    <div class="row">
+                        <mat-form-field appearance="fill" class="col-md-6">
+                            <mat-label>Remark 1</mat-label>
+                            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="3" placeholder="Remark 1" formControlName="TestTypeRemark" cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-md-6">
+                            <mat-label>Remark 2</mat-label>
+                            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="3" placeholder="Remark 2" formControlName="TestTypeRemark1" cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12  col-lg-12" style="top:10px">
+
+                    <div class="row">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="col-md-12 mb-5">
+                                    <button type="submit" (click)="onSubmit()" class="btn btn-primary" style="margin-right: 10px;">Done</button>
+                                    <button (click)="Back()" class="btn btn-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!--end::Form-->
+    </div>
+</div>

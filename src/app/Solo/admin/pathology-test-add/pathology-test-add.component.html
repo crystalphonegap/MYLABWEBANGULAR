@@ -1,0 +1,618 @@
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home i_test" ></i></a>
+        <a href="../Admin/PathologyTestList" class="title-heding-col">
+            <h6>Pathology Test Add</h6>
+        </a>
+        <!--  <i class="fas fa-chevron-right i_test"></i> <span style="padding: 7px 18px 0;">  Pathology Test Add</span> -->
+
+
+
+    </div>
+</div>
+<div class="p-2">
+    <div class="card card-custom pr-5 pl-5 example example-compact">
+        <form autocomplete="off" autocomplete="off" class="form">
+
+            <jw-modal id="recovery-previourdata-1">
+                <div class="col-12 jw-model-heder">
+                    <h4>
+                        Do you want recovery previours data?
+                    </h4>
+                </div>
+                <div class="row  mt-4">
+                    <a (click)="getSavedData()" class="btn btn-brand mr-2 btn-sm bot-sm">YES</a>
+                    <a (click)="closeRecoveryModal()" class="btn btn-brand mr-2  btn-sm bot-sm">NO</a>
+                </div>
+            </jw-modal>
+            <div class="row pt-4">
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label> Test Name *</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TestName" required placeholder="Test Name" matInput>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label> Report Heading</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_ReportHeading" placeholder="Report Heading" matInput>
+                </mat-form-field>
+
+
+
+
+            </div>
+            <div class="row">
+                <mat-form-field class=" col-md-4" appearance="fill">
+                    <mat-label>Test Type</mat-label>
+                    <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TestType" matNativeControl required>
+                        <mat-option *ngFor="let list of TestTypeList" [value]="list.TestTypeId">
+                            {{list.TestTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- (selectionChange)="getRateFromTestMaster()" -->
+                <mat-form-field class=" col-md-4" appearance="fill">
+                    <mat-label>Test Catagory</mat-label>
+                    <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedTestCatagory" matNativeControl required>
+                        <mat-option [value]="1">
+                            Regular
+                        </mat-option>
+                        <mat-option [value]="2">
+                            Special
+                        </mat-option>
+                        <mat-option [value]="3">
+                            Microbiology
+                        </mat-option>
+                        <mat-option [value]="4">
+                            Outside
+                        </mat-option>
+                        <mat-option [value]="5">
+                            Histo / Cyto
+                        </mat-option>
+                        <mat-option [value]="6">
+                            Other
+                        </mat-option>
+                        <mat-option [value]="7">
+                            Other 1
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class=" col-md-4" appearance="fill">
+                    <mat-label>Print Format</mat-label>
+                    <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedTestFormat" matNativeControl required>
+                        <mat-option *ngFor="let list of FormatList" [value]="list">
+                            {{list}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+
+            </div>
+            <div class="row">
+                <mat-form-field appearance="fill" class="col-md-2">
+                    <mat-label> Rate</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Rate" placeholder="Rate" autocomplete="off" type="number" onlyNumber matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="col-md-2">
+                    <mat-label> % Per Comm</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Comm" placeholder="% Per Comm" autocomplete="off" type="number" onlyNumber matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="col-md-2">
+                    <mat-label> Lumsum Comm</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_LumsumComm" placeholder="Lumsum Comm" autocomplete="off" type="number" onlyNumber matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="col-md-2">
+                    <mat-label> Alias</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Alies" placeholder="Alias" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="col-md-2">
+                    <mat-label> Test Cost</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TestCost" placeholder="Test Cost" autocomplete="off" type="number" onlyNumber matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="col-md-2">
+                    <mat-label> TAT</mat-label>
+                    <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TAT" placeholder="TAT" matInput>
+                </mat-form-field>
+            </div>
+            <div class="border" style="padding: 0%;">
+                <div *ngIf="Display!='Add' &&  Display!='Edit' && Display!='Browse'" class="row m-1 pt-2  bg-warning">
+                    <div class="col-md-10 card-title mb-0 ">
+                        <h3 class="card-label p-4">Field List
+
+                        </h3>
+                    </div>
+
+                    <div class="col-md-2 card-toolbar mt-2 text-right">
+                        <div class="row  text-right">
+                            <div>
+                                <a class="btn btn-sm btn-primary font-weight-bolder" (click)="changeView('Add')">
+                                    <span class="svg-icon svg-icon-md">
+                                        <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Design/Flatten.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                <circle fill="#000000" cx="9" cy="15" r="6"></circle>
+                                                <path
+                                                    d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z"
+                                                    fill="#000000" opacity="0.3"></path>
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>Add Field
+                                </a>
+
+
+                            </div>
+                            <div class="row ml-1">
+                                <button class="btn btn-sm" (click)="array_move('up')">
+                                    <span class="material-icons">
+                                        arrow_circle_up
+                                    </span>
+                                </button>
+                                <button class="btn btn-sm  " (click)="array_move('down')">
+
+                                    <span class="material-icons ">
+                                        arrow_circle_down
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="Display=='Browse'">
+                    <div class="row m-1 pt-2  bg-warning">
+                        <div class="col-md-10 card-title mb-0 ">
+                            <h3 class="card-label p-4">Test Field Help
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">#</th>
+                                    <th class="font-weight-bold align-text-top" scope="col ">Field Name</th>
+                                    <th class="font-weight-bold align-text-top" scope="col ">Test Name</th>
+                                    <th class="font-weight-bold align-text-top" scope="col ">Field Type</th>
+                                    <th class="font-weight-bold align-text-top" scope="col ">Normal Values</th>
+                                    <th class="font-weight-bold align-text-top" scope="col ">Group Name</th>
+                                    <th class="font-weight-bold align-text-top" scope="col ">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of AllTESTDETList; index as i">
+                                    <th scope="row" style="width: 56px;">{{ i + 1 }}</th>
+                                    <th>{{ data?.TESTDET_FieldName }}</th>
+                                    <th>{{ data?.TESTMST_Name }}</th>
+                                    <th>
+                                        <div *ngIf="data?.TESTDET_FieldType!='' && data?.TESTDET_FieldType!=null">
+                                            {{data?.TESTDET_FieldType}} : {{data?.TESTDET_FieldType==0?'Always Typed in':data?.TESTDET_FieldType==1?'Choose From Predefine Values':data?.TESTDET_FieldType==2?' FormulaField':''}}
+                                        </div>
+                                    </th>
+                                    <th>{{ data?.TESTDET_NormalValue }}</th>
+                                    <th>{{ data?.TESTDET_GroupName }}</th>
+                                    <th>
+                                        <button class="btn btn-sm btn-primary" (click)="getDatafromBrowse(i)">
+                                            Please Select
+                                            <span class="material-icons">
+                                        arrow_right_alt
+                                        </span></button>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <mat-form-field appearance="fill" class="col-md-12">
+                        <input (input)="GetAllTESTDET()" [ngModelOptions]="{standalone: true}" [(ngModel)]="SearchAllTESTDETList" placeholder="Quick Search" matInput>
+                    </mat-form-field>
+
+                    <button (click)="CloseBrowse()" class="btn btn-sm btn-primary">Close </button>
+                </div>
+                <div *ngIf="Display=='Add' ||  Display=='Edit'  ">
+                    <div class="row m-1 pt-2  bg-warning">
+                        <div class="col-md-10 card-title mb-0 ">
+                            <h3 class="card-label p-4">Add Field
+                            </h3>
+                        </div>
+
+                        <div class="col-md-2 card-toolbar mt-2 text-right">
+                            <div class="row  text-right">
+                                <div>
+                                    <button class="btn btn-sm btn-primary font-weight-bolder" (click)="GetAllTESTDET()">
+                                       Browse
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-card class="col-md-12" style="box-shadow: none; padding: 5px; ">
+                        <mat-card-content>
+                            <mat-tab-group class="demo-tab-group">
+                                <mat-tab label="Field Detail ">
+                                    <div class="demo-tab-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label> Field Name</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_FieldName" placeholder="Field Name " matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label> Alies</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_Alies" placeholder="Alies" matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <div class="row m-1">
+                                                    <mat-form-field class=" col-md-6" appearance="fill">
+                                                        <mat-label>Field Style</mat-label>
+                                                        <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="A_FieldStyle" matNativeControl required>
+                                                            <mat-option value="0">Alphanumeric</mat-option>
+                                                            <mat-option value="1">Numeric</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                    <mat-form-field class=" col-md-6" appearance="fill">
+                                                        <mat-label>Field Type</mat-label>
+                                                        <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="A_FieldType" matNativeControl required>
+                                                            <mat-option value="0">Always Typed in </mat-option>
+                                                            <mat-option value="1">Choose From Predefine Values
+                                                            </mat-option>
+                                                            <mat-option *ngIf="A_FieldStyle=='1' " value="2">
+                                                                FormulaField</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>1 Year</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_1Year" placeholder="1 Year" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Minimum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_1YearMinimumValue" autocomplete="off" type="number" onlyNumber placeholder="Minimum Value" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Maximum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_1YearMaximumValue" autocomplete="off" type="number" onlyNumber placeholder="Maximum Value" matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>Male</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_Male" placeholder="Male" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Minimum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_MaleMinimumValue" autocomplete="off" type="number" onlyNumber placeholder="Minimum Value" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Maximum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_MaleMaximumValue" autocomplete="off" type="number" onlyNumber placeholder="Maximum Value" matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>1 and 6 Year</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_6Year" placeholder=">1 and <6 Year" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Minimum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_6YearMinimumValue" autocomplete="off" type="number" onlyNumber placeholder="Minimum Value" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Maximum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_6YearMaximumValue" autocomplete="off" type="number" onlyNumber placeholder="Maximum Value" matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>Female</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_Female" placeholder="Female" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Minimum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_FemaleMinimumValue" autocomplete="off" type="number" onlyNumber placeholder="Minimum Value" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Maximum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_FemaleMaximumValue" autocomplete="off" type="number" onlyNumber placeholder="Maximum Value" matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>6 and 13 Year</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_13Year" placeholder=">6 and <13 Year" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Minimum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_13YearMinimumValue" autocomplete="off" type="number" onlyNumber placeholder="Minimum Value" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Maximum Value</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_13YearMaximumValue" autocomplete="off" type="number" onlyNumber placeholder="Maximum Value" matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>Unit</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_Unit" placeholder="Unit" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Minimum Limit</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_UnitMinimumValue" placeholder="Minimum Limit" autocomplete="off" type="number" onlyNumber matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-3">
+                                                        <mat-label>Maximum Limit</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_UnitMaximumValue" placeholder="Maximum Limit" autocomplete="off" type="number" onlyNumber matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>Group No</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_GroupNo" autocomplete="off" type="number" onlyNumber placeholder="Group No" matInput>
+                                                    </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>Group Name</mat-label>
+                                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_GroupName" placeholder="Group Name" matInput>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row m-1">
+                                                    <mat-form-field appearance="fill" class="col-md-6">
+                                                        <mat-label>Field Description</mat-label>
+                                                        <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]="A_FieldDescription" matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                                                    </mat-form-field>
+                                                    <div class="col-md-6">
+                                                        <div class=" row">
+
+                                                            <mat-form-field appearance="fill" class="col-md-12">
+                                                                <mat-label>Default Value</mat-label>
+                                                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_DefaultValue" placeholder="Default Value" matInput>
+                                                            </mat-form-field>
+                                                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="A_Compulsary" class="col-md-6">Compulsary
+                                                            </mat-checkbox>
+                                                            <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="A_Validate" class="col-md-6">Validate
+                                                            </mat-checkbox>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </mat-tab>
+                                <mat-tab *ngIf="A_FieldType=='1' " label="Predefine Values">
+                                    <div class="demo-tab-content">
+                                        <button (click)="addPredefineValueInlist()" class="btn btn-sm btn-primary "> Add
+                                            Predefine Value</button>
+                                        <table class="table ">
+                                            <thead>
+                                                <tr>
+                                                    <th class="font-weight-bold align-text-top" style="width: 56px;" scope="col ">Sr No</th>
+                                                    <th class="font-weight-bold align-text-top" scope="col ">Value</th>
+                                                    <th class="font-weight-bold align-text-top" style="width: 70px;" scope="col ">Action</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let test of PredefineValuelist ; index as i">
+                                                    <th style="width: 56px;">{{ i+1 }}</th>
+                                                    <th class="p-0 m-0">
+                                                        <mat-form-field class="col-md-12">
+                                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="test.PREDEFVAL_Value" placeholder="Enter Value" matInput>
+                                                        </mat-form-field>
+                                                    </th>
+                                                    <th style="width: 70px;">
+                                                        <a (click)="removePredefineValueFromlist(i)">
+                                                            <span class="material-icons">
+                                                                delete
+                                                            </span>
+                                                        </a>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab *ngIf="A_FieldType=='2'  && A_FieldStyle=='1' " label="Formula">
+                                    <div class="demo-tab-content">
+                                        <div class="row">
+
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Field</mat-label>
+                                                <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedColoum" matNativeControl>
+                                                    <mat-option *ngFor="let list of NumaricColumn" [value]="list">
+                                                        {{list}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <div>
+                                                <button (click)="addColumnInFormula()" class="btn btn-sm mr-2 ml-2 btn-primary mt-3">Add </button>
+                                            </div>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Operator</mat-label>
+                                                <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedSign" matNativeControl required>
+                                                    <mat-option value="+">+</mat-option>
+                                                    <mat-option value="-">-</mat-option>
+                                                    <mat-option value="/">/</mat-option>
+                                                    <mat-option value="*">*</mat-option>
+                                                    <mat-option value="(">(</mat-option>
+                                                    <mat-option value=")">)</mat-option>
+
+                                                </mat-select>
+                                            </mat-form-field>
+
+                                            <div>
+                                                <button (click)="addColumnInOperator()" class="btn btn-sm mr-2 ml-2 btn-primary mt-3">Add </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <mat-form-field appearance="fill" class="col-md-12">
+                                                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="A_sFormula" placeholder="Formula" matInput>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </mat-card-content>
+                    </mat-card>
+                    <button class="btn btn-sm m-3 btn-primary" (click)="AddFileldToList()">Done </button>
+                    <button class="btn btn-sm m-3 btn-primary" (click)="changeView('List')">Cancel </button>
+                </div>
+
+                <div *ngIf="Display=='List'" class="table table-responsive p-1">
+                    <table class="table table-striped ">
+
+                        <thead class="pt-5">
+                            <tr>
+                                <th class="font-weight-bold align-text-middle " scope="col " style="width: 56px;">Sr No
+                                </th>
+                                <th class="font-weight-bold align-text-middle " scope="col "> Field Name </th>
+                                <th class="font-weight-bold align-text-middle " scope="col ">Field Type</th>
+                                <th class="font-weight-bold align-text-middle " scope="col ">Normal Value</th>
+                                <th class="font-weight-bold align-text-middle " scope="col ">Group Value</th>
+                                <th class="font-weight-bold align-text-middle " scope="col " colspan="2" style="width: 106px;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let test of SelectedTestList ; index as i">
+                                <th [class]="this.SelectRowOfTest==i?'SelectRow':'otherrow'" style="width: 56px;"> <a class="select-th btn btn-sm" (click)="selectRow(i)">{{ i+1 }}</a></th>
+                                <th [class]="this.SelectRowOfTest==i?'SelectRow':'otherrow'">
+                                    <button class="select-th btn btn-sm" (click)="selectRow(i)">{{
+                                        test?.TESTDET_FieldName }}</button>
+                                </th>
+                                <th [class]="this.SelectRowOfTest==i?'SelectRow':'otherrow'">
+                                    <button class="select-th btn btn-sm" (click)="selectRow(i)">
+
+                                        {{test?.TESTDET_FieldType}} :
+                                        {{test?.TESTDET_FieldType==0?'Always Typed
+                                        in':test?.TESTDET_FieldType==1?'Choose
+                                        From Predefine Values':test?.TESTDET_FieldType==2?' FormulaField':''}}
+                                    </button>
+                                </th>
+                                <th [class]="this.SelectRowOfTest==i?'SelectRow':'otherrow'"> <button class="select-th btn btn-sm" (click)="selectRow(i)">{{test?.TESTDET_NormalValue}} </button></th>
+                                <th [class]="this.SelectRowOfTest==i?'SelectRow':'otherrow'"> <button class="select-th btn btn-sm" (click)="selectRow(i)">
+                                        {{test?.TESTDET_GroupName}}</button> </th>
+                                <th [class]="this.SelectRowOfTest==i?'SelectRow':'otherrow'" style="width: 106px;">
+
+                                    <div class="row" style="width: 106px;">
+                                        <button class=" btn btn-sm" (click)="Edit(i)">
+                                            <mat-icon matTooltip="Edit">edit</mat-icon>
+                                        </button>
+                                        <button class=" btn btn-sm" (click)="modelToRemoveTestFormat()">
+                                            <mat-icon matTooltip="delete">delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <mat-label>Test Comment</mat-label>
+                    <ckeditor [(ngModel)]="f_TestComment" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig" debounce="500" (change)="saveworking()">
+                    </ckeditor>
+                </div>
+                <!-- [value]="SelectedTestList" -->
+                <!-- <textarea (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TestComment" matInput cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea> -->
+
+
+                <div class="col-md-6">
+                    <mat-label>Prerequisition</mat-label>
+                    <ckeditor [(ngModel)]="f_Prerequisition" #myckeditor="ngModel" name="myckeditor2" required [config]="ckeConfig" debounce="500" (change)="saveworking()">
+                    </ckeditor>
+                </div>
+                <!-- <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label>Prerequisition</mat-label>
+                    <textarea (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Prerequisition" matInput cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field> -->
+            </div>
+            <div class="row">
+                <div class="example-list-section">
+                    <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_ActiveInactive" class="example-margin p-2">
+                        Active/Inactive
+                    </mat-checkbox>
+                    <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Special" class="example-margin p-2">
+                        Special
+                    </mat-checkbox>
+                </div>
+                <div class="example-list-section">
+
+                    <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Isimagekitcompulsary" class="example-margin p-2">
+                        Is image kit compulsary
+                    </mat-checkbox>
+                    <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_isNABL" class="example-margin p-2 ">
+                        is NABL
+                    </mat-checkbox>
+                </div>
+
+            </div>
+            <button (click)="onSubmit()" class="btn btn-sm btn-primary m-2">Save </button>
+            <button (click)="Back()" class="btn btn-sm btn-primary">Cancel </button>
+
+
+        </form>
+        <!--end::Form-->
+    </div>
+</div>
+
+
+<jw-modal id="removetestformat">
+    <div class="col-12 jw-model-heder">
+        <h4>
+            Do you wish to remove this test field?
+        </h4>
+    </div>
+    <div class="row  mt-4">
+        <a (click)="removeTestField()" class="btn btn-brand mr-2 btn-sm bot-sm">YES</a>
+        <a (click)="closeModal()" class="btn btn-brand mr-2  btn-sm bot-sm">NO</a>
+    </div>
+</jw-modal>

@@ -1,0 +1,354 @@
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home i_test" ></i></a>
+        <a href="../Admin/DoctorList" class="title-heding-col">
+            <h6>Doctor List</h6>
+        </a> <i class="fas fa-chevron-right i_test"></i> <span style="padding: 7px 18px 0;">  Add Doctor</span>
+
+
+
+    </div>
+</div>
+<div class="p-5">
+    <div class="card card-custom pr-5 pl-5 pt-3 gutter-b example example-compact">
+
+        <!--<div class="card-header">
+            <b class="card-title">Create Doctor</b>
+        </div>-->
+        <!--begin::Form-->
+        <form autocomplete="off" class="form" [formGroup]="DoctorAdd" class="example-form"  
+        #formDirective="ngForm"> 
+
+
+            <div class="row">
+
+                <div class="col-md-12 mt-2">
+                    <mat-form-field appearance="fill" class="col-md-4 ">
+                        <mat-label> Doctor Name *</mat-label>
+
+                        <input matInput formControlName="DOCTOR_Name" placeholder="Doctor Name">
+
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="col-md-4">
+
+                        <mat-label> Mobile No</mat-label>
+                        <input matInput placeholder="Enter Mobile No" formControlName="DOCTOR_MobileNo" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)" placeholder="Mobile No *" matInput>
+                    </mat-form-field>
+                    
+                      
+                         
+                      <mat-form-field  appearance="fill" class="col-md-4">
+                        <mat-label>Email</mat-label>
+                        <!-- <input type="email" matInput   formControlName="DOCTOR_Email" placeholder="Ex.pat@example.com"  >
+                        <mat-error *ngIf="DOCTOR_Email.hasError('email') && !DOCTOR_Email.hasError('required')" >
+                          Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="DOCTOR_Email.hasError('required')">
+                          Email is <strong>required</strong>
+                        </mat-error> -->
+
+                        <input
+                            type="text"
+                            matInput
+                            formControlName="DOCTOR_Email"
+                            class="form-input-field"
+                            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                        />
+                        <mat-error *ngIf="DoctorAdd.get('DOCTOR_Email').hasError('required')"
+                            >Email is required</mat-error
+                        >
+                        <mat-error *ngIf="DoctorAdd.get('DOCTOR_Email').hasError('email')"
+                            >Please enter a valid email address
+                        </mat-error>
+                      </mat-form-field>
+
+                         <!-- <mat-form-field  appearance="fill" class="col-md-4">   
+                         <input matInput placeholder="Enter Email Address" formControlName="DOCTOR_Email" ="emailvalidation">
+                    </mat-form-field>  -->
+
+
+                </div>
+                <div class="col-md-12 mt-2 ">
+                    <mat-form-field appearance="fill" class="col-md-4">
+
+                        <mat-label>Qualification</mat-label>
+                        <input matInput formControlName="DOCTOR_Qualification" placeholder="Qualification">
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="fill" class="col-md-8">
+
+                        <mat-label>Collection Center *</mat-label>
+                        <input type="text" (input)="onCollectionCenterChanged()" (change)="onCollectionCenterChanged()" placeholder="Collection Center *" matInput [formControl]="CollectionCenter" [matAutocomplete]="Center">
+                        <mat-autocomplete (optionSelected)="onCollectionCenterChanged()" #Center="matAutocomplete">
+                            <mat-option *ngFor="let option of CollectionCenterList | async" [value]="option.CENTER_Name">
+                                {{option.CENTER_Name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="CollectionCenter.invalid">Select Collection Center
+                        </mat-error>
+                    </mat-form-field>
+
+
+
+                </div>
+
+
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12 col-lg-12">
+                    <div class="font-size-sm col-md-12" style="padding: 0px;">
+
+                        <mat-card style="box-shadow: none; padding: 5px;">
+                            <mat-card-content>
+                                <mat-tab-group class="demo-tab-group">
+                                    <mat-tab label="Category Wise Comm">
+                                        <div class="demo-tab-content">
+
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-3">
+
+                                                    <mat-label> Routine</mat-label>
+                                                    <input matInput placeholder="Enter Routine" formControlName="DOCTOR_RCommission">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-3">
+
+                                                    <mat-label> Special</mat-label>
+                                                    <input matInput placeholder="Enter Special" formControlName="DOCTOR_SPCommission">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="fill" class="col-md-3">
+
+                                                    <mat-label> MicroBiology</mat-label>
+                                                    <input matInput placeholder="Enter MicroBiology" formControlName="DOCTOR_MCommission">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="fill" class="col-md-3">
+
+                                                    <mat-label> OutSide</mat-label>
+                                                    <input matInput placeholder="Enter OutSide" formControlName="DOCTOR_OCommission">
+                                                </mat-form-field>
+
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-3">
+
+                                                    <mat-label> Histo/Cyto</mat-label>
+                                                    <input matInput placeholder="Enter Histo/Cyto" formControlName="DOCTOR_HCommission">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-3">
+
+                                                    <mat-label> Other</mat-label>
+                                                    <input matInput placeholder="Enter Other" formControlName="DOCTOR_EXCommission">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label> Other 1</mat-label>
+                                                    <input matInput placeholder="Enter Other 1" formControlName="DOCTOR_EX1Commission">
+                                                </mat-form-field>
+
+                                            </div>
+
+                                        </div>
+                                    </mat-tab>
+                                    <mat-tab label="Residential Address">
+                                        <div class="demo-tab-content">
+
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-6">
+
+                                                    <mat-label> Address1</mat-label>
+                                                    <input matInput placeholder="Enter Address" formControlName="DOCTOR_Address1">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-6">
+
+                                                    <mat-label> Address2</mat-label>
+                                                    <input matInput placeholder="Enter Address" formControlName="DOCTOR_Address2">
+                                                </mat-form-field>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label> Area</mat-label>
+                                                    <input matInput placeholder="Enter Region" formControlName="DOCTOR_Area">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label> Pin Code</mat-label>
+                                                    <input matInput placeholder="Enter Pin Code" formControlName="DOCTOR_Pincode" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)" placeholder="Pin Code *" matInput>
+                                                </mat-form-field>
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label> City</mat-label>
+                                                    <input matInput placeholder="Enter City" formControlName="DOCTOR_City">
+                                                </mat-form-field>
+
+                                            </div>
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label> State</mat-label>
+                                                    <input matInput placeholder="Enter State" formControlName="DOCTOR_State">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label> Country</mat-label>
+                                                    <input matInput placeholder="Enter Country" formControlName="DOCTOR_Country">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-3">
+
+                                                    <mat-label> Telephone No</mat-label>
+                                                    <input matInput placeholder="Enter Telephone No" formControlName="DOCTOR_Telno" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)">
+                                                </mat-form-field>
+                                            </div>
+
+
+                                        </div>
+                                    </mat-tab>
+                                    <mat-tab label="Office Address">
+                                        <div class="demo-tab-content">
+
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-6">
+
+                                                    <mat-label> Address 1</mat-label>
+                                                    <input matInput placeholder="Enter Address 1" formControlName="OFFICE_Address1">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-6">
+
+                                                    <mat-label> Address 2</mat-label>
+                                                    <input matInput placeholder="Enter Address 2" formControlName="OFFICE_Address2">
+                                                </mat-form-field>
+
+                                            </div>
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>Area</mat-label>
+                                                    <input matInput placeholder="Enter Area" formControlName="OFFICE_Area">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="fill" class="col-md-4">
+                                                    <mat-label>Pin Code</mat-label>
+                                                    <input matInput placeholder="Enter Pin Code" formControlName="OFFICE_Pincode" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)" placeholder="Pin Code *" matInput>
+                                                </mat-form-field>
+                                                <mat-form-field appearance="fill" class="col-md-4">
+                                                    <mat-label>City</mat-label>
+                                                    <input matInput placeholder="Enter City" formControlName="OFFICE_City">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>State</mat-label>
+                                                    <input matInput placeholder="Enter State" formControlName="OFFICE_State">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>Country</mat-label>
+                                                    <input matInput placeholder="Enter Country" formControlName="OFFICE_Country">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>Telephone No</mat-label>
+                                                    <input matInput placeholder="Enter Telephone No" formControlName="OFFICE_Telno" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)">
+                                                </mat-form-field>
+
+                                            </div>
+
+                                        </div>
+                                    </mat-tab>
+                                    <!-- <mat-tab label="Commision">
+                                        <div class="demo-tab-content">
+                                            <div class="row">
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>Pathalogy Tests</mat-label>
+                                                    <input matInput placeholder="Enter Pathalogy Tests" formControlName="DOCTOR_Commission">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>X-Ray Tests</mat-label>
+                                                    <input matInput placeholder="Enter X-Ray Tests" formControlName="DOCTOR_XCommission">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>Sonography Tests</mat-label>
+                                                    <input matInput placeholder="Enter Sonography Tests" formControlName="DOCTOR_SCommission">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>Profile Tests</mat-label>
+                                                    <input matInput placeholder="Enter Profile Tests" formControlName="DOCTOR_PFCommission">
+                                                </mat-form-field>
+
+                                                <mat-form-field appearance="fill" class="col-md-4">
+
+                                                    <mat-label>TDS</mat-label>
+                                                    <input matInput formControlName="TDS" placeholder="TDS">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </mat-tab> -->
+                                </mat-tab-group>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12  col-lg-12" style="top:10px">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <mat-checkbox formControlName="DOCTOR_Permanent">Permanent/Temporary</mat-checkbox>
+                        </div>
+
+                        <!-- <mat-form-field appearance="fill" class="col-md-3">
+
+                            <mat-label>Sorting(Enter Y to Sort in Refferal report)</mat-label>
+                            <input matInput placeholder="Sorting(Enter Y to Sort in Refferal report)" formControlName="OFFICE_url">
+                        </mat-form-field> -->
+
+                        <div class="col-md-3">
+                            <mat-checkbox formControlName="SendSMS">Send SMS</mat-checkbox>
+                        </div>
+
+                        <!-- <mat-form-field appearance="fill" class="col-md-3">
+
+                            <mat-label> Bill(Enter Y to take Paid Bill print)</mat-label>
+                            <input matInput placeholder="Bill(Enter Y to take Paid Bill print)" formControlName="DOCTOR_Bill">
+                        </mat-form-field> -->
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="col-md-12 mb-3">
+                                    <button type="submit" class="btn btn-primary" (click)="onSubmit()" style="margin-right: 10px;">Done</button>
+                                    <button (click)="Back()" class="btn btn-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!--end::Form-->
+    </div>
+</div>

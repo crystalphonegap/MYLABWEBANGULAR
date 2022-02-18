@@ -1,0 +1,39 @@
+
+<div class="card card-custom">
+    <div class="container">
+        <div class="row card-header flex-wrap pt-6 pb-0">
+            <div class="col-8 card-title">
+                <h3 class="card-label">Rate List Report</h3>
+            </div>
+          
+        </div>
+    </div>
+    <div class="card-body">
+       
+        <form autocomplete="off" class="form" [formGroup]="CollectionCenterAdd" style="padding-bottom: 6px;">
+            <div class="col-md-12">
+                <mat-form-field class="col-md-12" appearance="fill">
+                    <mat-label>Select Rate List</mat-label>
+                    <mat-select formControlName="CENTER_RATELIST_ID">
+                        <mat-option *ngFor="let data of RateList" [value]="data?.RateListId">
+                            {{data?.RateListName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+        <div class="col-md-12">
+            <ul class="checkbox-items">
+                <li *ngFor="let item of checkboxesDataList">
+                  <input type="checkbox" [(ngModel)]="item.isChecked" (change)="changeSelection()"> {{item.label}}
+                </li>
+              </ul>
+            </div>
+            <!--  -->
+
+        <div class="col-md-4">
+            <a (click)="ExportReport()" class="btn btn-light-primary px-6 font-weight-bold">Export</a>
+        </div>
+        <!--end::Form-->
+    </div>
+</div>

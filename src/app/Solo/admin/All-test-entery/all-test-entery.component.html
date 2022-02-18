@@ -1,0 +1,261 @@
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home i_test " ></i></a>
+        <a href="#" class="title-heding-col">
+            <h6>All Test Entry</h6>
+        </a>
+
+
+
+    </div>
+</div>
+<div style="padding: 0 9px;">
+    <div class="card card-custom content d-flex flex-column flex-column-fluid">
+        <div class="card-body">
+            <div class="row pr-3">
+                <div class="col-md-2 border" style="background: #c8e2f71c;">
+                    <div class="mb-2">
+                        <button class="btn btn-sm btn-primary " (click)="onViewById()" [style.display]="ViewByName">
+                    SHOW BY LAB NO
+                    </button>
+                        <button class=" btn btn-sm btn-primary" (click)="onViewByName()" [style.display]="ViewByID">
+                    SHOW BY PATIENTS
+                    </button>
+                    </div>
+                    <div class="border">
+
+                        <div class="m-2">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" style="border: 1px solid #3699ff;" placeholder="Quick Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-success" type="submit"><i class="flaticon-search icon-nm"></i>
+                                </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="form-group  p-2">
+                        <div class="border-bottom">
+                            <label [style.display]="ViewByID">
+                            <b>LIST OF LAB NO</b>
+                            </label>
+
+                            <label [style.display]="ViewByName">
+                                <b>LIST OF PATIENTS</b>
+                            </label>
+                        </div>
+                        <div class="row " style="overflow: auto; height: 85%;">
+
+                            <!-- [style]="selectedPatient_Id==Emp?.Patient_Id? 'background: #59b9fd8c;' :''" -->
+                            <!-- selectedPatient_Id==Emp.Patient_Id? 'selectedRow  row pl-2  border-bottom' : -->
+                            <diV class="col-md-11 testList" style="overflow: auto; height: 400px;">
+                                <div class="pl-3  " *ngFor="let Emp of DataList ">
+                                    <div [class]="Emp.Status=='0'?'Authenticate':Emp.Status=='1'?'no-entry-done':Emp.Status=='2'?'Integration':'notSelectedRow  row pl-2  border-bottom'">
+                                        <i [class]="Emp.PATIENT_Gender=='Male'?'fa fa-mars icon-lg ':Emp.PATIENT_Gender=='Female'?'fa fa-venus icon-lg ':Emp.PATIENT_Gender=='Transgender'?'fas fa-transgender icon-lg ':''"></i>
+                                        <a (click)="GetPatientAllTestDetail(Emp?.Patient_Id)" class="btn btn-sm pt-1">
+                                            <div [style.display]="ViewByID">
+                                                {{Emp?.labno }}
+                                            </div>
+                                            <div [style.display]="ViewByName">
+                                                {{Emp?.PATIENT_Name }}
+                                            </div>
+                                        </a><i [class]="Emp.Urgent=='1'?'fas fa-fire icon-nm pt-2':''"></i>
+                                    </div>
+                                </div>
+                            </diV>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-7" style="padding: 0 0 0;">
+                    <div class=" table table-responsive">
+                        <table class="table border">
+                            <thead>
+                                <tr>
+                                    <th class=" col-auto font-weight-bold align-text-top " style="width: 56px;" scope="col"><b>Sr No</b></th>
+                                    <th class=" col-auto font-weight-bold align-text-top " scope="col "><b>Test Catagory </b></th>
+                                    <th class=" col-auto font-weight-bold align-text-top " scope="col "><b>Test Name </b></th>
+                                    <th class=" col-auto font-weight-bold align-text-top " scope="col "><b>Field Name</b> </th>
+                                    <th class=" col-auto font-weight-bold align-text-top " scope="col " style="width: 120px"><b>Value</b></th>
+                                    <th class=" col-auto font-weight-bold align-text-top " scope="col "><b>Normal Value</b></th>
+                                    <th style="text-align: center;" [style.display]="ReRun" class=" font-weight-bold align-text-top " scope="col "><b> Select for Re-Run</b></th>
+                                </tr>
+                            </thead>
+                            <tbody id="mytablebody">
+                                <tr *ngFor="let Emp of TestData ; index as i ">
+                                    <td scope="row " style="width: 56px;">{{i +1 }}</td>
+                                    <td class=" col-auto test-name-col">{{Emp?.TestTypeName }}</td>
+                                    <td class=" col-auto test-name-col">{{Emp?.TESTMST_Name }}</td>
+                                    <td class=" col-auto field-name-col">{{Emp?.TESTDET_FieldName }}</td>
+                                    <td *ngIf="Emp.TESTDET_FieldType!=1" style="width: 120px" class=" col-auto">
+
+                                        <div *ngIf="Emp.TESTDET_FieldType==0">
+                                            <input [style.color]="Emp.MaxValue< Emp?.DOCDET_tFieldValue?'Red':Emp.MinValue> Emp?.DOCDET_tFieldValue?'Red':'Black' " id="{{'input'+i}}" class="form-control " (input)="ValueChanged(Emp,$event.target.value,i)" (keypress)="($event.charCode >= 46 && $event.charCode <= 58)"
+                                                [ngModel]="Emp?.DOCDET_tFieldValue" [disabled]="Emp.MarkComplete === 'Auntheticate'">
+                                            <!-- && TestData[0].MarkComplete === 'admin' -->
+                                            <!-- onfocus="SetCurrentIndex(i)"  -->
+                                        </div>
+                                        <div *ngIf="Emp.TESTDET_FieldType==2">
+                                            <a [style.color]="Emp.MaxValue< Emp?.DOCDET_tFieldValue?'Red':Emp.MinValue> Emp?.DOCDET_tFieldValue?'Red':'Black' ">
+                                            {{Emp?.DOCDET_tFieldValue }}
+                                        </a>
+
+                                        </div>
+                                    </td>
+                                    <td *ngIf="Emp.TESTDET_FieldType==1" colspan="2">
+                                        <a title="{{Emp?.DOCDET_tFieldValue }}" class="title">
+                                            <mat-form-field class="col-12">
+                                                <input id="{{'input'+i}}" [value]="Emp?.DOCDET_tFieldValue" type="text" placeholder="Select Value" matInput (change)="ChangeDDlValue(Emp,$event.target.value,i)" (input)="ChangeDDlValue(Emp,$event.target.value,i)" [matAutocomplete]="auto">
+                                                <!-- onfocus="SetCurrentIndex(i)" -->
+                                                <mat-autocomplete (optionSelected)="ChangeDDlValue(Emp,$event.option.value,i)" #auto="matAutocomplete">
+                                                    <mat-option *ngFor="let option of Emp?.PREDEFVAL | async" [value]="option.PREDEFVAL_Value" style="width: 250px !important;">
+                                                        {{option.PREDEFVAL_Value}}
+                                                    </mat-option>
+                                                </mat-autocomplete>
+                                            </mat-form-field>
+                                        </a>
+
+                                    </td>
+                                    <td *ngIf="Emp.TESTDET_FieldType!=1" class=" col-auto">{{Emp?.TESTDET_NormalValue }}</td>
+                                    <td style="text-align: center;" class=" col-auto" [style.display]="ReRun" scope="row ">
+                                        <label class="kt-checkbox">
+                                        <input  (change)="onCheckboxClick(Emp,$event)"  [checked]="Emp?.Rerun=='True'" type="checkbox">
+                                        <span></span>
+                                    </label>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="row ml-2">
+
+                        <div class="ml-2">
+                            <button type="button" class="btn btn-primary btn-sm m-2">Save & SMS Bal Pay</button>
+                            <button type="button" class="btn btn-primary btn-sm m-2">Save & SMS Report</button>
+                            <button type="button" (click)="SaveAndPrint()" class="btn btn-primary btn-sm m-2">Save & Print All</button>
+                            <button type="button" (click)="onSubmit()" class="btn btn-primary btn-sm m-2">Save</button>
+                            <button type="button" (click)="onCancel()" class="btn btn-primary btn-sm m-2">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3" style="background: #59b9fd2e;">
+                    <div>
+                        <div style="border-bottom: 1px solid #4b61ba">
+                            <h4 style="color:#3f51b5;">Patient Details</h4>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Date</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Date}}</label>
+
+                                </div>
+                                <div class="col-md">
+                                    <label>Lab No</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.labno}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Patient Name</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Name}}</label>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Gender</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Gender}}</label>
+                                </div>
+                                <div class="col-md">
+                                    <label>Age</label>
+                                    <label class="form-control form-control-sm">
+                                        YY  {{this.TestData[0]?.yy}}
+                                      MM  {{  this.TestData[0]?.month}}
+                                       DD   {{ this.TestData[0]?.dd}}
+                                          </label>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Contact No</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_Telno}}</label>
+                                </div>
+                                <div class="col-md">
+                                    <label>Sample Date</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.Sample_Date}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Ref by Doctor(1)</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.PATIENT_DoctorName}}</label>
+                                </div>
+                                <div class="col-md">
+                                    <label>Ref by Doctor(2)</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.DoctorName2}}</label>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Collection Center</label>
+                                    <label class="form-control form-control-sm"> {{this.TestData[0]?.CENTER_Name}}</label>
+                                </div>
+
+                            </div>
+
+
+                            <div>
+                                <div class="row m-2">
+                                    <mat-radio-group>
+                                        <mat-radio-button [checked]="rbtnReSample" (change)="radioChange($event)" value="C">Re-Sample</mat-radio-button>
+                                        <mat-radio-button [checked]="rbtnReRun" (change)="radioChange($event)" value="R">Re-Run</mat-radio-button>
+                                        <mat-radio-button [checked]="rbtnValidate" (change)="radioChange($event)" value="V">Validate</mat-radio-button>
+                                        <mat-radio-button [checked]="rbtnAuntheticate" (change)="radioChange($event)" value="Y">Auntheticate</mat-radio-button>
+                                    </mat-radio-group>
+
+                                </div>
+                                <div class="col-md">
+                                    <label>Re-Sample Remark</label>
+                                    <!-- <textarea class="form-control form-control-md"> {{this.TestData[0]?.CENTER_Name}}</textarea> -->
+                                </div>
+                                <div class="col-md">
+                                    <label>Narration</label>
+                                    <!-- <textarea class="form-control form-control-md"> {{this.TestData[0]?.CENTER_Name}}</textarea > -->
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!--end: Datatable-->
+        </div>
+    </div>
+</div>

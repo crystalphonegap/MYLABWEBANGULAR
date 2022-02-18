@@ -1,0 +1,294 @@
+<div class="card card-custom">
+
+    <div class="card-header flex-wrap border pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">Patient List
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--begin::Button-->
+            <a class="btn btn-sm btn-primary font-weight-bolder" href="Admins/PatientIdAdd">
+                <span class="svg-icon svg-icon-md">
+                        <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Design/Flatten.svg-->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24"></rect>
+                                <circle fill="#000000" cx="9" cy="15" r="6"></circle>
+                                <path
+                                    d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z"
+                                    fill="#000000" opacity="0.3"></path>
+                            </g>
+                        </svg>
+                        <!--end::Svg Icon-->
+                    </span>Add</a>
+            <!--end::Button-->
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid " style="background: #fff; ">
+            <div class="kt-portlet ">
+                <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm ">
+                    <div class="kt-portlet__head-label ">
+                        <h3 class="kt-portlet__head-title ">
+
+                        </h3>
+                    </div>
+
+                </div>
+                <!-- <div class="p-4 bg-light border-top border-bottom ">
+            <div class="kt-form kt-form--label-right ">
+                <div class="row align-items-center ">
+                    <div class="col-xl-12 order-2 order-xl-1 ">
+                        <div class="row align-items-center ">
+                      
+
+                            <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0 ">
+                                <div class="kt-input-icon kt-input-icon--left ">
+                                    <input type="text " class="form-control form-control-sm " [(ngModel)]="Keyword "
+                                        placeholder="Type To Search... ">
+                                    <span class="kt-input-icon__icon kt-input-icon__icon--left ">
+                                        <span><i class="la la-search "></i></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-auto ">
+                                <button class="btn btn-dark btn-sm " (click)="ngOnInit() " title="bigger "><i
+                                        class="fa fa-search ml-2 ml-md-0 "></i><span
+                                        class="d-none d-md-inline-block ml-2 ">Search</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+                <div class="kt-portlet__body card card-custom ">
+                    <form>
+                        <!--begin::Search Form-->
+                        <div class="mb-7">
+                            <div class="row align-items-center">
+                                <div class="col-lg-9 col-xl-8">
+                                    <div class="input-icon">
+                                        <input type="text" class="form-control" id="kt_datatable_search_query">
+                                        <span>
+                                        <i class="flaticon2-search-1 text-muted"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+                                    <a class="btn btn-light-primary px-6 font-weight-bold">Search</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Search Form-->
+                    </form>
+                    <div class=" table table-responsive ">
+                        <table class="table table-striped " style="overflow:hidden;">
+                            <thead>
+                                <tr>
+                                    <th class=" font-weight-bold align-text-top " scope="col ">#</th>
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Test Name</th>
+
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row ">1</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">2</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">3</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">4</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">5</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">6</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">7</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">8</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">9</th>
+                                    <td>test</td>
+
+                                    <td>
+                                        <div class="row ">
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="edit">edit</mat-icon>
+                                            </button>
+                                            <button class="btn btn-sm">
+                                                <mat-icon matTooltip="delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+                <!-- <h4 *ngIf="this.EmployeeList[0]==null ">No Data Available</h4> -->
+                <!-- <div *ngIf="EmployeeList[0] !=null " class="kt-pagination kt-pagination--brand ">
+                <ul class="kt-pagination__links ">
+                    <li *ngIf="this.pageField.length < paginationService.exactPageList "
+                        class="kt-pagination__link--prev ">
+                        <a (click)="showPrevEmployees() "
+                            [ngClass]="(paginationService.showNoOfCurrentPage==1)? 'notAllowed': 'kt-font-brand' "><i
+                                class="fa fa-angle-left kt-font-brand "></i></a></li>
+                    <li *ngFor="let page of pageField;let i=index "
+                      >
+                        <a  [ngClass]="pageNumber[i] ? 'kt-pagination__link--active': '' " (click)="showEmployeesByPageNumber(page,i) " style="cursor: pointer; ">{{page}}</a>
+                    </li>
+                    <li *ngIf="this.pageField.length < paginationService.exactPageList "
+                        class="kt-pagination__link--next "><a (click)="showNextEmployees() "
+                            [ngClass]="(paginationService.disabledNextBtn)? 'notAllowed': 'kt-font-brand' "><i
+                                class="fa fa-angle-right kt-font-brand "></i></a> </li>
+                </ul>
+                <div class="kt-pagination__toolbar ">
+                    <div class="pagination__desc ">Page <span class="kt-font-bold ">{{currentPage}}</span> of
+                        <span class="kt-font-bold ">{{paginationService.exactPageList}}</span></div>
+                </div>
+            </div> -->
+
+                <!--begin::Pagination-->
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="d-flex flex-wrap py-2 mr-3">
+
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1 active">Prev</a>
+
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1">...</a>
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1">23</a>
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1">24</a>
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1">25</a>
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1">26</a>
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1">27</a>
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1">28</a>
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1">...</a>
+
+                        <a href="#" class="btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1 active">Next</a>
+
+                    </div>
+                    <div class="d-flex align-items-center py-3">
+                        <span class="text-muted">Displaying 10 of 230 records</span>
+                    </div>
+                </div>
+                <!--end:: Pagination-->
+            </div>
+
+        </div>
+    </div>
+
+</div>

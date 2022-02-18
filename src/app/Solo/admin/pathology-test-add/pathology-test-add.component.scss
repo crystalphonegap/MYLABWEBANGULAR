@@ -1,0 +1,89 @@
+tbody {
+    display: block;
+    overflow: auto;
+    height: 200px;
+    width: 100%;
+}
+
+thead tr {
+    display: table;
+    width: 100%;
+    table-layout: auto;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: auto;
+}
+
+.align-text-middle {
+    vertical-align: middle !important;
+    height: 35px !important;
+}
+
+.mat-tab-label {
+    height: 10px;
+}
+
+.table th,
+.table td {
+    padding: 4;
+}
+
+.SelectRow {
+    background-color: #3699ff24;
+}
+
+.jw-modal {
+    max-width: 860px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #dbdbdb3d !important;
+}
+
+.select-th {
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.mat-input-element1 {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 1.3rem + 2px);
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e2e5ec;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.i_test {
+    padding: 7px 1px 0;
+    color: #1a1a27;
+}
+
+.right-title-details {
+    padding: 6px;
+    color: #fff;
+    text-align: right;
+}
+
+// .gradient-bg {
+//     background: linear-gradient(to right, #ffc837, #ff8008);
+// }
+.title-heding-col {
+    padding: 7px 18px 0;
+    color: #1a1a27;
+}
+
+.gradient-head-bg {
+    background: linear-gradient(to right, #141e30, #243b55);
+}

@@ -1,0 +1,216 @@
+
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard" title="Home"><i class="fas fa-home i_test" ></i></a>
+        <a href="../Admin/PathologyTestList" class="title-heding-col ">
+            <h6>Profile Test List </h6>
+        </a> <i class="fas fa-chevron-right i_test"></i> <span class="title-heding-col">  Profile Master</span>
+
+
+
+    </div>
+</div>
+<form autocomplete="off">
+
+
+
+    <div class="p-5">
+        <div class="card card-custom pr-5 pl-5 pb-5 gutter-b example example-compact">
+
+            <div class="demo-tab-content">
+                <div class="row">
+                    <mat-form-field appearance="fill" class="col-md-4">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TestName" matInput placeholder="Test Name">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="col-md-4">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_ReportHeading" matInput placeholder="Report Heading">
+                    </mat-form-field>
+
+                    <mat-form-field class=" col-md-2" appearance="fill">
+                        <mat-label>Test Type </mat-label>
+                        <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedTestCatagory" matNativeControl required>
+                            <mat-option [value]="1">
+                                Regular
+                            </mat-option>
+                            <mat-option [value]="2">
+                                Special
+                            </mat-option>
+                            <mat-option [value]="3">
+                                Microbiology
+                            </mat-option>
+                            <mat-option [value]="4">
+                                Outside
+                            </mat-option>
+                            <mat-option [value]="5">
+                                Histo / Cyto
+                            </mat-option>
+                            <mat-option [value]="6">
+                                Other
+                            </mat-option>
+                            <mat-option [value]="7">
+                                Other 1
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="col-md-2">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Alies" matInput placeholder="Alias">
+                    </mat-form-field>
+
+
+                </div>
+                <div class="row">
+
+
+                    <mat-form-field appearance="fill" class=" col-md-3" appearance="fill">
+                        <mat-label>Test Catagory</mat-label>
+                        <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TestType" matNativeControl required>
+                            <mat-option *ngFor="let list of TestTypeList" [value]="list.TestTypeId">
+                                {{list.TestTypeName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class=" col-md-2">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedTestFormat" matInput placeholder="Print Format">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="col-md-2">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" autocomplete="off" type="number" [(ngModel)]="f_Rate" matInput placeholder="Rate">
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="fill" class="col-md-1">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" autocomplete="off" type="number" [(ngModel)]="f_TestCost" matInput placeholder="Test Cost">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" appearance="fill" class="col-md-1">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Comm" autocomplete="off" type="number" matInput placeholder="Percentage (%)">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="col-md-1">
+                        <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_LumsumComm" autocomplete="off" type="number" matInput placeholder="Commission (Lumsun)">
+                    </mat-form-field>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 border">
+                        <div class="table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+
+                                        <th scope="col">Test Name</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let list of AllTestList; index as i">
+
+                                        <td>
+                                            <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" (change)="setHtmlContain()" [(ngModel)]="list.Selected" class="example-margin p-2">
+                                                {{list.TESTMST_Name}}
+                                            </mat-checkbox>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-6 border">
+                        <div class="table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+
+                                        <th scope="col">Test Name</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let list of SelectedTestList; index as i">
+
+                                        <td>
+
+                                            {{list.TESTMST_Name}}
+
+                                            <a (click)="removeContain(list)" class="btn btn-sm">
+                                                <mat-icon>delete</mat-icon>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <mat-form-field appearance="fill" class="col-md-6">
+                        <mat-label>Test Comment</mat-label>
+                        <textarea (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_TestComment" matInput cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                    </mat-form-field>
+
+                    <div class="example-list-section">
+                        <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_ActiveInactive" class="example-margin p-2">
+                            Active/Inactive
+                        </mat-checkbox>
+                        <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_Special" class="example-margin p-2">
+                            Special
+                        </mat-checkbox>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12  col-lg-12">
+                    <button (click)="onSubmit()" type="submit" class="btn btn-primary mr-5">Save</button>
+                    <button (click)="Back()" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <jw-modal id="removetestformat">
+        <div class="col-12 jw-model-heder">
+            <h4>
+                Do you wish to remove the test format?
+            </h4>
+        </div>
+        <div class="row  mt-4">
+            <a (click)="removeTestField()" class="btn btn-brand mr-2 btn-sm bot-sm">YES</a>
+            <a (click)="closeModal()" class="btn btn-brand mr-2  btn-sm bot-sm">NO</a>
+        </div>
+    </jw-modal>
+
+    <jw-modal id="recovery-previourdata-1">
+        <div class="col-12 jw-model-heder">
+            <h4>
+                Do you want recovery previours data?
+            </h4>
+        </div>
+        <div class="row  mt-4">
+            <a (click)="getSavedData()" class="btn btn-brand mr-2 btn-sm bot-sm">YES</a>
+            <a (click)="closeRecoveryModal()" class="btn btn-brand mr-2  btn-sm bot-sm">NO</a>
+        </div>
+    </jw-modal>
+
+
+</form>

@@ -1,0 +1,230 @@
+<div class="p-5">
+    <div class="card card-custom p-3 gutter-b example example-compact">
+        <!--<div class="card-header">
+            <b class="card-title">Test Master</b>
+            <div class="card-toolbar">
+                <div class="example-tools justify-content-center">
+                </div>
+            </div>
+        </div>-->
+        <!--begin::Form-->
+        <form autocomplete="off" class="form">
+            <fieldset class="p-4">
+                <legend>Test Master</legend>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-group row">
+                            <div class="col-md-6 col-lg-6">
+                                <label>Test Name : </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter Test Name" />
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <label>Test Type : </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter Test Name" />
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 col-lg-6">
+                                <label>Report Heading : </label>
+                                <br />
+                                <textarea type="text" class="form-control-sm form-control" placeholder="Enter Report Heading"></textarea>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <label>Test Category : </label>
+                                <br />
+                                <select class="form-control" placeholder="Test Category" name="Category">
+                                    <option *ngFor="let Category of Categorys" [value]="Category.value">
+                                        {{Category.viewValue}}
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2 col-lg-2">
+                                <label>Print Format : </label>
+                                <br />
+                                <select class="form-control" name="PrintFormat">
+                                    <option *ngFor="let PrintFormat of PrintFormats" [value]="PrintFormat.value">
+                                        {{PrintFormat.viewValue}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <label>Rate : </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter Rate" />
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <label>% Comm : </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter % Comm" />
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <label>LumSum: </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter LumSum" />
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <label>Alias: </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter Alias" />
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <label>Test Cost: </label>
+                                <br />
+                                <input type="text" class="form-control-sm form-control" placeholder="Enter Test Cost" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9"></div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="border example-container">
+                            <div style="overflow:auto; max-height: 200px;">
+                                <table class="table caption-top">
+                                    <thead class="thead-bg">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Field Name</th>
+                                            <th scope="col">Field Type</th>
+                                            <th scope="col">Normal Value</th>
+                                            <th scope="col">Group Name</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>Normal</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>Normal</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>Normal</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-sm" (click)="openModal()">Other</button>
+                        <!-- <button class="btn btn-brand"><mat-icon>add</mat-icon></button> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-md-6 col-lg-6">
+                                <label>Test Comments: </label>
+                                <br />
+                                <textarea type="text" class="form-control-sm form-control" placeholder="Enter Test Comments"></textarea>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <label>Test Prereqiisition: </label>
+                                <br />
+                                <textarea type="text" class="form-control-sm form-control" placeholder="Enter Test Comments"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 pt-5">
+                        <div class="form-group row">
+                            <div class="col-md-3 col-lg-3">
+                                <input type="checkbox">Active/InActive
+                            </div>
+                            <div class="col-md-3 col-lg-3">
+                                <input type="checkbox">Special Test
+                            </div>
+                            <div class="col-md-3 col-lg-3">
+                                <input type="checkbox">Is Image kit Compulsary
+                            </div>
+                            <div class="col-md-3 col-lg-3">
+                                <input type="checkbox">Is NABL
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <button class="btn btn-primary mr-2" (click)="openModal()">Add Field</button>
+                            <button type="reset" class="btn btn-primary mr-2">Edit Field</button>
+                            <button type="reset" class="btn btn-secondary mr-2">Delete</button>
+                            <button type="reset" class="btn btn-secondary mr-2">Done</button>
+                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <!--end::Form-->
+    </div>
+</div>
+
+<jw-modal id="custom-modal-1">
+
+    <div class="col-12 jw-model-heder">
+        <h4>
+            Add Field
+        </h4>
+
+
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <label>Field Name : </label>
+                <br />
+                <input type="text" class="form-control-sm form-control" placeholder="Enter Test Name" />
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <label>Test Name : </label>
+                <br />
+                <input type="text" class="form-control-sm form-control" placeholder="Enter Test Name" />
+            </div>
+        </div>
+
+        <div class="row">
+            <h4 class="col-5 h4-tit">CHEQUE Amount</h4>
+            <input class=" form-control col-6" (change)="onRowChange('CHEQUE',$event.target.value)">
+        </div>
+        <div class="row">
+            <h4 class="col-5 h4-tit">CREDIT CARD Amount</h4>
+            <input class=" form-control col-6" (change)="onRowChange('CREDIT CARD',$event.target.value)">
+        </div>
+        <div class="row">
+            <h4 class="col-5 h4-tit">NEFT/RTGS Amount</h4>
+            <input class=" form-control col-6" (change)="onRowChange('NEFT/RTGS',$event.target.value)">
+        </div>
+    </div>
+    <div class="row  mt-4">
+        <a (click)="saveModal();" class="btn btn-brand mr-2 btn-sm bot-sm">Save</a>
+
+        <a (click)="closeModal();" class="btn btn-brand mr-2  btn-sm bot-sm">Close</a>
+    </div>
+</jw-modal>

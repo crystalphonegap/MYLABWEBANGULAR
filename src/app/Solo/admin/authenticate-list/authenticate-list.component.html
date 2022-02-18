@@ -1,0 +1,208 @@
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home i_test" ></i></a>
+        <a href="../Admin/PatientList" class="title-heding-col ">
+            <h6>Authenticate List</h6>
+        </a>
+    </div>
+</div>
+<div style="padding: 0 9px;">
+    <div class="card card-custom content d-flex flex-column flex-column-fluid">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2 border" style="background: #c8e2f71c;">
+                    <div>
+                        <button class="mt-5 btn btn-sm btn-primary m-2" (click)="onViewById()" [style.display]="ViewByName">
+                    SHOW BY LAB NO
+                    </button>
+                        <button class=" mt-5 btn btn-sm btn-primary m-2" (click)="onViewByName()" [style.display]="ViewByID">
+                    SHOW BY PATIENTS
+                    </button>
+                    </div>
+                    <div class="border">
+                        <div class="m-2">
+                            <div class="input-group mb-3">
+                                <input type="text" [(ngModel)]="search" value="" class="form-control" placeholder="Quick Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-success" type="submit" (click)="QuickSearch()"><i class="flaticon-search icon-nm"></i>
+                            </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+                        <div class="row " style="overflow: auto;">
+                            <div class="border-bottom ml-3 w-100" style="padding: 6px 10px 4px;">
+                                <label [style.display]="ViewByID">
+                            <b>LIST OF LAB NO</b>
+                            </label>
+
+                                <label [style.display]="ViewByName">
+                            <b>LIST OF PATIENTS</b>
+                            </label>
+                            </div>
+                            <diV class="col-md-11 testList w-100" style="overflow: auto; height: 470px; margin-left: 16px; ">
+                                <div class="pl-3  " *ngFor="let Emp of DataList ">
+                                    <div class="row pl-2  border-bottom w-100">
+                                        <i [class]="Emp.PATIENT_Gender=='Male'?'fa fa-mars icon-lg ':Emp.PATIENT_Gender=='Female'?'fa fa-venus icon-lg ':Emp.PATIENT_Gender=='Transgender'?'fas fa-transgender icon-lg ':''"></i>
+                                        <!-- <i class="fa fa-venus icon-lg pt-1"></i> <i class="fas fa-transgender icon-lg pt-1"></i> -->
+                                        <a (click)="getTestDetailByPatientID(Emp?.Patient_Id)" class="btn btn-sm">
+
+                                            <!-- <element *ng-if="{{Emp?.labno }}">{{Emp?.Status }}</element> -->
+                                            <div [style.display]="ViewByID">
+                                                {{Emp?.labno }}
+                                            </div>
+                                            <div [style.display]="ViewByName">
+                                                {{Emp?.PATIENT_Name }}
+                                            </div>
+                                            {{Emp?.Status }}
+                                            <mat-progress-bar mode="determinate" value="Emp.Status"></mat-progress-bar>
+
+                                        </a><i [class]="Emp.Urgent=='1'?'fas fa-fire icon-nm pt-2':''"></i>
+                                    </div>
+                                </div>
+                            </diV>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10" style="padding-left: 5px;">
+                    <div class="row pb-3">
+                        <div class=" ">
+                            <div class="row ml-3 mr-3">
+                                <div class="box no-entry-done"></div>
+                                <span class="p-2">No data entry done</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="row ml-3 mr-3">
+                                <div class="box entry-done"> </div>
+                                <span class="p-2">data entry done</span>
+                            </div>
+                        </div> 
+                        <div class="">
+                            <div class="row ml-3 mr-3">
+                                <div class="box Integration"> </div>
+                                <span class="p-2">Integration</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="row ml-3 mr-3">
+                                <div class="box Re-Sample"> </div>
+                                <span class="p-2">Re-Sample</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="row ml-3 mr-3">
+                                <div class="box Re-Run"> </div>
+                                <span class="p-2">Re-Run</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="row ml-3 mr-3">
+                                <div class="box Validated"> </div>
+                                <span class="p-2">Validated</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="row ml-3 mr-3">
+                                <div class="box Authenticate"> </div>
+                                <span class="p-2">Authenticate</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="row ml-3 mr-3">
+                                <div class="box Printout"> </div>
+                                <span class="p-2">Print out taken</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class=" table table-responsive border">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class=" font-weight-bold align-text-top " scope="col " style="width: 56px;">Sr No</th>
+                                    <!-- <th class=" font-weight-bold align-text-top " scope="col " style="width: 56px;">Select </th> -->
+                                    <th class=" font-weight-bold align-text-top " scope="col " style="width: 56px;">Lab No</th>
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Patient Name</th>
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Test Name</th>
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Collection Center</th>
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Doctor Name</th>
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Date</th>
+                                    <!-- <th class=" font-weight-bold align-text-top " scope="col ">Email</th> -->
+                                    <!-- <th class=" font-weight-bold align-text-top " scope="col ">Action</th> -->
+                                    <th class=" font-weight-bold align-text-top " scope="col ">Authenticate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Emp of TestData ; index as i "  >
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''" scope="row " style="width: 56px;">{{i +1 }}</th>
+                                    <!-- <th [class]="Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''" scope="row " style="width: 56px;" >
+                                        <label class="kt-checkbox">
+                                        <input  [ngModelOptions]="{standalone: true}"  [(ngModel)]="Emp.issent" type="checkbox"  (change)="isChangeLimitAccessToggle(Emp?.Patient_Id,Emp?.TESTMST_Name)">
+                                        <span></span>
+                                    </label>
+                                    </th> -->
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''" style="width: 56px;">{{Emp?.labno }}</th>
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">{{Emp?.PATIENT_Name }}</th>
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">{{Emp?.TESTMST_Name }}</th>
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">{{Emp?.CENTER_Name }}</th>
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">{{Emp?.PATIENT_DoctorName }} {{ Emp?.DoctorName2!=null?'| '+ Emp?.DoctorName2:'' }}</th>
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">{{Emp?.PATIENT_Date | date :'dd/MM/yyyy'}}</th>
+                                    <!-- <th [class]="Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">
+                                        <label class="kt-checkbox">
+                                    <input type="checkbox"  
+                                        [checked]="Emp?.Status==true" disabled>
+                                    <span></span>
+                                </label>
+                                    </th> -->
+                                    <!-- <th [class]="Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">
+                                        <button (click)="Edit(Emp?.DOCHDR_lDocumentId)" class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"><i class="fa fa-pen"></i>
+                                    </button>
+                                    </th> -->
+                                    <th [class]="Emp.NoOfPrintOuts=='1'?'Printout':Emp.MarkComplete=='D'?'entry-done':Emp.MarkComplete=='N'?'no-entry-done':Emp.MarkComplete=='Y'?'Authenticate':Emp.MarkComplete=='C'?'Re-Sample':Emp.MarkComplete=='V'?'Validated':Emp.MarkComplete=='R'?'Re-Run':''">
+                                        <button (click)="Authenticate(Emp?.DOCHDR_lDocumentId)"  class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"><i class="fa fa-pen"></i>
+                                    </button>
+                                    </th>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <div class="row ml-2">
+
+
+                        <!-- <div class="ml-2">
+                            <button type="button" (click)="smsreport()" class="btn btn-sm btn-primary m-2">SMS Report</button>
+                            <button type="button"   (click)="rptPrintAll()"  class="btn btn-sm btn-primary m-2">Print All</button>
+                            <button type="button"  (click)="rptTOG()"  class="btn btn-sm btn-primary m-2">Print Togather</button>
+                            <button type="button" (click)="Format01()" class="btn btn-sm btn-primary m-2">Print</button>
+                            <button type="button"  (click)="Report()" class="btn btn-sm btn-primary m-2">Report</button>
+                            <button type="button" (click)="Refresh()" class="btn btn-sm btn-primary m-2">Refresh</button>
+                            <button type="button" (click)="Close()" class="btn btn-sm btn-primary m-2">Close</button>
+                        </div> -->
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+            <!--end: Datatable-->
+        </div>
+    </div>
+</div>

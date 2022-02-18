@@ -1,0 +1,109 @@
+<div class="header-title-com container-fluid gradient-bg ">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home i_test"></i></a>
+        <a href="../Admin/LabelGroupList" class="title-heding-col">
+            <h6>Add Lable Group</h6>
+        </a>
+
+
+
+    </div>
+</div>
+<form autocomplete="off">
+    <div class="p-5">
+        <div class="card card-custom pr-5 pl-5 pb-5 gutter-b example example-compact">
+
+            <div class="demo-tab-content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <mat-form-field appearance="fill" class="col-md-12">
+                            <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="GroupName" matInput placeholder="Enter Group Name">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-2">
+                        <mat-form-field appearance="fill" class="col-md-12">
+                            <input (input)="saveworking()" [ngModelOptions]="{standalone: true}" [(ngModel)]="Alias" matInput placeholder="Alias">
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-2">
+                        <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="f_ActiveInactive" class="example-margin p-2">
+                            Active/Inactive
+                        </mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 border">
+                        <div class="table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+
+                                        <th scope="col">Test Name</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let list of AllTestList; index as i">
+
+                                        <td>
+                                            <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" (change)="setHtmlContain()" [(ngModel)]="list.Selected" class="example-margin p-2">
+                                                {{list.TestName}}
+                                            </mat-checkbox>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-6 border">
+                        <div class="table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+
+                                        <th scope="col">Test Name</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let list of SelectedTestList; index as i">
+
+                                        <td>
+
+                                            {{list.TestName}}
+
+                                            <a (click)="removeContain(list)" class="btn btn-sm">
+
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12  col-lg-12">
+                    <button (click)="onSubmit()" type="submit" class="btn btn-primary mr-5">Save</button>
+                    <button (click)="Back()" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>

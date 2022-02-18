@@ -1,0 +1,98 @@
+<div class="header-title-com container-fluid gradient-bg ">
+    <div class="row">
+
+        <a href="http://localhost:4200/Admin/dashboard"><i class="fas fa-home i_test"></i></a>
+        <a href="#" class="title-heding-col">
+            <h6>CategoryWiseRateUpdate</h6>
+        </a>
+
+
+
+    </div>
+</div>
+<div class="p-5">
+    <div class="card card-custom pr-5 pl-5 pb-5 gutter-b example example-compact">
+
+        <!--<div class="card-header">
+
+        </div>-->
+        <!--begin::Form-->
+        <form autocomplete="off" class="form">
+
+
+
+
+
+
+            <div class="row" style="margin: 0px; padding: 0px;">
+                <div class=" col-md-12">
+
+                    <div class="head-sub-title mt-3">
+                        <h4>Rate List</h4>
+                    </div>
+
+
+                    <mat-form-field class=" p-2 ml-3 mt-1 col-md-11" appearance="fill">
+                        <mat-label>Select Test Category Wise</mat-label>
+                        <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedRateList" matNativeControl required>
+                            <mat-option *ngFor="let list of listOfRateList" [value]="list.TestTypeId">
+                                {{list.TestTypeName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="head-sub-title">
+                        <h4>Discount % in Rate List</h4>
+                    </div>
+
+                    <div style="padding-left: 2px;">
+                        <div class="border m-5">
+
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+            <div class="row ml-4">
+                <button type="reset" class="btn btn-primary mr-2">Update Basic Rate List</button>
+
+            </div>
+
+        </form>
+        <!--end::Form-->
+    </div>
+</div>

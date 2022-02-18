@@ -1,0 +1,33 @@
+
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard" title="Home"><i class="fas fa-home i_test"></i></a>
+        <a href="../Admin/ReasonMaster" class="title-heding-col">
+            <h6>Re-Sample Reason </h6>
+        </a> <i class="fas fa-chevron-right i_test"></i> <span class="title-heding-col">  Reason Add</span>
+
+
+
+    </div>
+</div>
+<div class="p-5">
+    <div class="card card-custom pr-5 pl-5 pb-5 gutter-b example example-compact">
+        <!--begin::Form-->
+        <form autocomplete="off" class="form" [formGroup]="NarrationAdd" (ngSubmit)="onSubmit()">
+
+            <label class="m-3">Enter  Re-Sample Reason</label>
+            <br />
+
+            <textarea rows="6" type="text" formControlName="NarrationText" class="form-control-sm form-control">
+
+                                </textarea>
+
+            <div class="row mt-3 ml-4">
+                <button type="submit" class="btn btn-primary btn-sm mr-2">Save</button>
+                <button (click)="Back()" class="btn btn-primary btn-sm mr-2">Cancel</button>
+            </div>
+        </form>
+        <!--end::Form-->
+    </div>
+</div>

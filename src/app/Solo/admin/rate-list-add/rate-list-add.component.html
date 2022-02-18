@@ -1,0 +1,167 @@
+
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard"><i class="fas fa-home i_test" ></i></a>
+        <a href="../Admin/RateList" class="title-heding-col">
+            <h6>Rate List</h6>
+        </a> <i class="fas fa-chevron-right i_test"></i> <span style="padding: 7px 18px 0;">  Add Rate List</span>
+
+
+
+    </div>
+</div>
+<div style="padding: 0 9px;">
+    <div class="card card-custom content d-flex flex-column flex-column-fluid">
+        <div class="card-body">
+            <form autocomplete="off" [formGroup]="RateListAdd" class="form">
+                <div>
+                    <div class="row">
+
+                        <mat-form-field appearance="fill" class=" mt-1 ml-3 col-md-6">
+                            <mat-label>Rate List Name</mat-label>
+                            <input type="text" matInput formControlName="RateListName" placeholder="Rate List Name ">
+                        </mat-form-field>
+
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline" appearance="fill">
+                                <mat-label>Effective From Date</mat-label>
+                                <input matInput autocomplete="off" formControlName="EffectiveDate" [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <mat-form-field appearance="fill" class=" mt-1 col-md-7">
+                            <mat-label>Quick Search</mat-label>
+                            <input type="text" matInput (input)="GetRateList()" [ngModelOptions]="{standalone: true}" [(ngModel)]="SearchRateList" placeholder="Quick Search">
+                        </mat-form-field>
+
+                        <mat-form-field class=" ml-3 mt-1 col-md-2" appearance="fill">
+                            <mat-label>Select Test Type Wise</mat-label>
+                            <mat-select (selectionChange)="getRateFromTestMaster()" [ngModelOptions]="{standalone: true}" [(ngModel)]="SearchRateListType" matNativeControl required>
+                                <mat-option value="NoSearch">All</mat-option>
+                                <mat-option value="P">Pathology</mat-option>
+                                <mat-option value="X">X-Ray</mat-option>
+                                <mat-option value="R">Profiles</mat-option>
+                                <mat-option value="H">HistoPathology</mat-option>
+                                <mat-option value="S">Sono</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class=" ml-3 mt-1 col-md-2" appearance="fill">
+                            <mat-label>Select Test Catagory Wise</mat-label>
+                            <mat-select (selectionChange)="getRateFromTestMaster()" [ngModelOptions]="{standalone: true}" [(ngModel)]="SearchRateListCatagory" matNativeControl required>
+                                <mat-option value="0">All</mat-option>
+                                <mat-option *ngFor="let list of TestTypeList" [value]="list.TestTypeId">
+                                    {{list.TestTypeName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!--Round off <p>{{2.5 | number:'1.0-0'}}</p> -->
+                    <div class="table-responsive border">
+
+                        <table class="table ">
+
+                            <thead class="thead-bg">
+                                <tr>
+                                    <th scope="col" style="width: 30px;">#</th>
+                                    <th scope="col">Test Type</th>
+                                    <th scope="col">Test Name</th>
+                                    <th scope="col">Test Catagory</th>
+                                    <th scope="col">Test Rate</th>
+                                    <th scope="col">Disocount</th>
+                                    <th scope="col">Net Amount</th>
+                                    <th scope="col" style="width: 54px;">Special</th>
+                                    <th scope="col">Referal Fee %</th>
+                                    <th scope="col">Lum Sum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Data of RateListTestMaster ; index as i ">
+                                    <th scope="row " style="width: 30px;">{{i +1 }}</th>
+                                    <th>{{Data?.Type }}</th>
+                                    <th>{{Data?.TESTMST_Name }}</th>
+                                    <th>{{Data?.TestTypeName }}</th>
+                                    <th>
+                                        <input (keypress)="keyPressNumbersDecimal($event)" value="{{Data?.BaseRate}}" (input)="ChangeTextBoxBaseRate(Data,$event.target.value)" type="text" class="form-control-sm form-control" />
+                                    </th>
+                                    <th>
+                                        <input (keypress)="keyPressNumbersDecimalPercentage($event)" value="{{Data?.Discount}}" (input)="ChangeTextBoxDiscount(Data,$event.target.value)" type="text" class="form-control-sm form-control" />
+                                    </th>
+                                    <th>
+                                        <input (keypress)="keyPressNumbersDecimal($event)" value="{{Data?.TestRate | number:'1.0-0'}}" (input)="ChangeTextBoxTestRate(Data,$event.target.value)" type="text" class="form-control-sm form-control" disabled />
+                                    </th>
+                                    <th style="width: 40px;">
+                                        <label class="checkbox">
+                                                <input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                                    [name]="Data.TESTMST_Name" [(ngModel)]="Data.SpecialTest"
+                                                    (change)="onCheckBoxChange(Data,$event)">
+                                                <span style="margin-left: 15px;"></span>
+                                            </label>
+                                    </th>
+                                    <th>
+                                        <input (keypress)="keyPressNumbersDecimalPercentage($event)" value="{{Data?.Referal_Fee}}" (input)="ChangeTextBoxReferal_Fee(Data,$event.target.value)" type="text" class="form-control-sm form-control" />
+                                    </th>
+                                    <th>
+                                        <input (keypress)="keyPressNumbersDecimal($event)" value="{{Data?.LumSumAmt}}" (input)="ChangeTextBoxLumSumAmt(Data,$event.target.value)" type="text" class="form-control-sm form-control" />
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+
+
+                    
+                    <div class="card-footer">
+                        <div class="row">
+                            <div *ngIf="Progressing==true" class="col-md-8">
+                                <!-- <button [style.display]="saveAsView" (click)="openModal()" class="float-left btn btn-primary mr-2">Save As</button> -->
+                                <button (click)="onSubmit()" type="submit" class="btn btn-sm btn-primary m-2">Save</button>
+                                <button (click)="Back()" class="btn btn-sm btn-primary m-2">Back</button>
+                            </div>
+                            <div *ngIf="Progressing!=true" class="col-md-8">
+                                <!-- <div  *ngIf=" this.Progress ==this.RateListTestMasterInput.length*this.RateListTestMaster.length" > -->
+                                Insert/Update in progress Please Wait
+                                <!-- </div>
+                                Processing Data Please Wait
+                                <div   *ngIf=" this.Progress !=this.RateListTestMasterInput.length*this.RateListTestMaster.length"  >
+                                <ngb-progressbar showValue="true" type="success" [value]="Progress"></ngb-progressbar>
+                                </div> -->
+                                <!-- <button (click)="Back()" class="btn btn-sm btn-primary m-2">Back</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+
+
+<jw-modal id="custom-modal-1">
+
+    <div class="col-12 jw-model-heder">
+        <h4>
+            Other Payment Mode
+        </h4>
+    </div>
+    <div>
+        <div class="row">
+            <h4 class="col-5 h4-tit">New Rate List Name</h4>
+            <input class=" form-control col-6" (input)="onRowChange($event.target.value)">
+        </div>
+    </div>
+    <div class="row  mt-4">
+        <a (click)="saveModal();" class="btn btn-brand mr-2 btn-sm bot-sm">Ok</a>
+
+        <a (click)="closeModal();" class="btn btn-brand mr-2  btn-sm bot-sm">Cancle</a>
+    </div>
+</jw-modal>

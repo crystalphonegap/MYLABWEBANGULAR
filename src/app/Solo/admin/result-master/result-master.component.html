@@ -1,0 +1,95 @@
+
+<div class="header-title-com container-fluid gradient-bg">
+    <div class="row">
+
+        <a href="../Admin/dashboard" title="Home"><i class="fas fa-home i_test" ></i></a>
+        <a href="../Admin/PatientList" class="title-heding-col ">
+            <h6>Result Master </h6>
+        </a>
+
+
+    </div>
+</div>
+<div style="padding: 0 9px;">
+    <div class="card card-custom content d-flex flex-column flex-column-fluid">
+        <div class="card-body">
+            <form autocomplete="off" class="form">
+                <div>
+
+
+                    <div class="row ">
+                        <div class="col-md-3 border example-container ">
+
+                            <table class="table table-responsive caption-top ">
+
+                                <thead class="thead-bg ">
+                                    <tr>
+                                        <th scope="col " style="width: 30px;">#</th>
+                                        <th scope="col ">List of Test</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of AllTestList ; index as i" (click)="selectRow(i)" [class]="this.SelectRowOfTest==i?'SelectRow':''">
+                                        <th scope="row " style="width: 30px; ">{{i+1}}</th>
+                                        <th>{{data.TESTMST_Name}}</th>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <mat-form-field class="col-md-9 pb-0 h-20">
+                                <mat-label>Quick Search</mat-label>
+                                <input (input)="_filter()" matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="search">
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-md-9 border example-container ">
+
+                            <table class="table table-responsive caption-top thead-bg">
+
+                                <thead class="thead-bg ">
+                                    <tr>
+                                        <th scope="col " style="width: 30px; ">#</th>
+                                        <th scope="col ">SMS</th>
+                                        <th scope="col ">WORK</th>
+                                        <th scope="col ">Field Name</th>
+                                        <th scope="col ">Alias</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of testDetailData ; index as i">
+                                        <th scope="row " style="width: 30px; ">{{i+1}}</th>
+                                        <th>
+                                            <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.sms" class="example-margin p-2">
+
+                                            </mat-checkbox>
+                                        </th>
+                                        <th>
+                                            <mat-checkbox type="checkbox|radio" [ngModelOptions]="{standalone: true}" [(ngModel)]="data.work" class="example-margin p-2">
+                                            </mat-checkbox>
+
+                                        </th>
+                                        <th>{{data.TESTDET_FieldName}}</th>
+                                        <th>{{data.TESTDET_sAlias}}</th>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a (click)="onSubmit()" class="btn btn-primary mr-2 btn-sm bot-sm">Save</a>
+                            <a (click)="Back()" class="btn btn-primary mr-2 btn-sm bot-sm">Back</a>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>

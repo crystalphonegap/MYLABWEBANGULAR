@@ -1,0 +1,1045 @@
+<!--begin::Brand-->
+<div class="brand flex-column-auto" id="kt_brand" [ngClass]="brandClasses">
+    <!--begin::Logo-->
+    <a routerLink="/" class="brand-logo">
+        <img alt="Logo" [attr.src]="headerLogo" />
+    </a>
+    <!--end::Logo-->
+
+    <ng-container *ngIf="asideSelfMinimizeToggle">
+        <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
+            <span [inlineSVG]="
+            './assets/media/svg/icons/Navigation/Angle-double-left.svg'
+          " cacheSVG="true" class="svg-icon svg-icon-xl"></span>
+        </button>
+    </ng-container>
+</div>
+<!--end::Brand-->
+
+<!--begin::Aside Menu-->
+<div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+    <ng-container *ngIf="disableAsideSelfDisplay">
+        <!--begin::Header Logo-->
+        <a routerLink="/">
+            <img alt="Logo" [attr.src]="headerLogo" />
+        </a>
+        <!--end::Header Logo-->
+    </ng-container>
+    <!--begin::Menu Container-->
+    <div id="kt_aside_menu" class="aside-menu" [ngClass]="asideMenuCSSClasses" data-menu-vertical="1" [attr.data-menu-scroll]="asideMenuScroll" [attr.data-menu-dropdown]="asideMenuDropdown" data-menu-dropdown-timeout="500">
+        <!-- begin::Menu Nav -->
+        <ul class="menu-nav" [ngClass]="ulCSSClasses">
+            <!-- begin::1 Level -->
+            <li class="menu-item" aria-haspopup="true" routerLinkActive="menu-item-active">
+                <a class="menu-link" routerLink="/Admin/dashboard" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Layout/Layout-4-blocks.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text" translate="MENU.DASHBOARD"></span>
+                </a>
+            </li>
+
+            <!-- begin::1 Master -->
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" routerLinkActive="menu-item-open">
+                <a class="menu-link menu-toggle" href="/ngbootstrap" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Clothes/Crown.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text">Master</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">NgBootstrap</span>
+                            </span>
+                        </li>
+                        <!-- begin::2 Level -->
+                        <!-- <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/PermanentPatientId" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Permanent Patient ID</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/PermanentAddressPatientList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Permanent Patient Address Lable Print</span>
+                            </a>
+                        </li> -->
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/PatientList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Patient Registration</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/DoctorList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Doctor's</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level-->
+                        <!--begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/EmployeeList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Employees</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/CollectionList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Collection Center</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/TPAList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">TPA List</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/RateList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Rate List</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <!-- <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admins/CategoryWiseRateUpdate" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Update CatWise Rate</span>
+                            </a>
+                        </li> -->
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/ngbootstrap/rating" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Import Export Rate</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/TestTypeList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Test Type</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='P'?'/Admin/PathologyTestList':'P'" (click)="routetoTestList('Pathology Test List','P')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Pathology Test </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='X'?'/Admin/PathologyTestList':'X'" (click)="routetoTestList('Radiology Test List','X')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Radiology Test  </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='S'?'/Admin/PathologyTestList':'S'" (click)="routetoTestList('Sonography Test List','S')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Sonography Test  </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='H'?'/Admin/PathologyTestList':'H'" (click)="routetoTestList('HistoPathology Test List','H')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">HistoPathology Test </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='R'?'/Admin/PathologyTestList':'R'" (click)="routetoTestList('Profile Test List','R')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Profile Test </span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='C'?'/Admin/PathologyTestList':'C'" (click)="routetoTestList('Cardio Test List','C')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Cardio Test </span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='T'?'/Admin/PathologyTestList':'T'" (click)="routetoTestList('Color Dopler Test List','T')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Color Dopler Test </span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='U'?'/Admin/PathologyTestList':'U'" (click)="routetoTestList('Poly Clinic Test List','U')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Poly Clinic Test </span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='D'?'/Admin/PathologyTestList':'D'" (click)="routetoTestList('Dental Test List','D')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Dental Test </span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" [routerLink]=" this.TestType=='V'?'/Admin/PathologyTestList':'V'" (click)="routetoTestList('Procedure Test List','V')" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Procedure Test </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/LabelGroupList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">label Group </span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/ReasonMaster" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Reason </span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/NarrationList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Narration </span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admins/ResultMaster" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Results </span>
+                            </a>
+                        </li>
+
+                        <!-- <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/ngbootstrap/typehead" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Set SMS Parameter</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/ngbootstrap/typehead" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">SMS Template Master</span>
+                            </a>
+                        </li> -->
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/DndMobileNumber" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">DND Mobile Number</span>
+                            </a>
+                        </li>
+
+                        <!-- <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/ngbootstrap/typehead" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Add SMS API</span>
+                            </a>
+                        </li> -->
+                        <!-- end::2 Level -->
+                    </ul>
+                </div>
+            </li>
+            <!-- End::1 Master -->
+
+            <!-- begin::1 Transaction -->
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" routerLinkActive="menu-item-open">
+                <a class="menu-link menu-toggle" href="/ngbootstrap" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Shopping/Money.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text">Transactions</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">NgBootstrap</span>
+                            </span>
+                        </li>
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/ChangeDateSelection" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Change Date Selection</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Enter Test</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admins/PatientTestEntery" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Patient List</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Sample Collection Bar code </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admins/PaymentSystemList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Payments</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Bill Details</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Delete Transactions</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admins/AllTestEntery" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">All Test Entries</span>
+                            </a>
+                        </li>
+                        <li hidden="true" class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admins/AuthenticatePatientTest" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Authenticate Patient Test</span>
+                            </a>
+                        </li>
+                        <li  class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admins/AuthenticateList" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Authenticate Screen</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Register Patient to Quantum</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Collection Center Bill</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Payments Received From Collection Center</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">TDS Certificate</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Payments Reminder</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+
+                    </ul>
+                </div>
+            </li>
+            <!-- end::1 Transaction -->
+
+            <!-- begin::1 Utilities -->
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" routerLinkActive="menu-item-open">
+                <a class="menu-link menu-toggle" href="/ngbootstrap" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Tools/Tools.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text">Utilities</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">NgBootstrap</span>
+                            </span>
+                        </li>
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Smart Report on Barcode</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Search Report</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Print All Report</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">E-mail All Report</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Delta Checking</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">SMS Utility</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Report Ready SMS</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Back Up Database</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Test Mapping Quantum</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Counter</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Mapping For EM200</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!-- end::1 utilities -->
+            <!-- begin::1 External Report -->
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" routerLinkActive="menu-item-open">
+                <a class="menu-link menu-toggle" href="/ngbootstrap" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Communication/Clipboard-check.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text">External Report </span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">NgBootstrap</span>
+                            </span>
+                        </li>
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Marketing SMS Module</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">PDF Generator</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Metro Report Email Utility</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">File Upload</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Work Sheet Printing</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Doctor Email Utility\SMS Utility\Abnormal SMS Utility</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <!-- end::1 External Report -->
+            <!-- begin::1 Reports -->
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" routerLinkActive="menu-item-open">
+                <a class="menu-link menu-toggle" href="/ngbootstrap" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Design/Pen-tool-vector.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text">Reports</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">NgBootstrap</span>
+                            </span>
+                        </li>
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Patient List</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/DoctorListReport" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Doctor List</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/EmployeeListReport" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Employee List</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="/Admin/RateListReport" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Rate List</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Work Sheet Printing</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">CBC Worksheet Program</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Collection Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Outside Test Metropolis Account Statement</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Quantum OutSide Test Quantum / Microbes Statement</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Quantum OutSide Test New QSL / QL Statement</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Test Count Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">TAT Reports</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">TAT Reports Typewise</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+
+
+                    </ul>
+                </div>
+            </li>
+            <!-- end::1 Reports -->
+
+            <!-- begin::1 MIS Reports -->
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" routerLinkActive="menu-item-open">
+                <a class="menu-link menu-toggle" href="/ngbootstrap" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Files/File.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text">MIS Reports</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                            <span class="menu-link">
+                                <span class="menu-text">NgBootstrap</span>
+                            </span>
+                        </li>
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Result Register</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Dispatch Register</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Account Book</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Daily Account Book</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Type Wise Collection Center</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Reference Charges Report (Test Wise) </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Collection Center Wise Monthly Bill </span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <!-- begin::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Collection Center Register</span>
+                            </a>
+                        </li>
+                        <!-- end::2 Level -->
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Reference Charges Report (Collection Center)</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Reference Charges Report (Doctor)</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Pending Test</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Balance Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text text-wrap">Balance Report With Pending Test</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Refund Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Discount Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Time Graph</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Test Card Printing Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Compare Test Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Patient Edit & Delete Report</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+                            <a class="menu-link" routerLink="#" routerLinkActive="active">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">TDS Certificate</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <!-- end::1 MIS Reports -->
+
+
+            <li class="menu-item" aria-haspopup="true">
+                <a class="menu-link" routerLink="/Common/Login" routerLinkActive="active">
+                    <span [inlineSVG]="'./assets/media/svg/icons/Code/Lock-overturning.svg'" cacheSVG="true" class="svg-icon menu-icon"></span>
+                    <span class="menu-text" translate="Logout"></span>
+                </a>
+            </li>
+
+
+
+
+
+        </ul>
+        <!-- end::Menu Nav -->
+    </div>
+    <!--end::Menu Container-->
+</div>
+<!--end::Aside Menu-->

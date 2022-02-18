@@ -1,0 +1,205 @@
+
+
+<div class="header-title-com container-fluid " style="background: linear-gradient(to right, #ffc837, #ff8008 );"> 
+    <div class="row">
+        <div class="col-6" style="padding: 6px">
+            <div class="row">
+                <a href="../Admin/dashboard"><i class="fas fa-home i_test" ></i></a>
+                <i class="fas fa-chevron-right i_test "></i> <span style="padding: 7px 18px 0;">Payment System </span>
+          </div>
+        </div>
+        <div class="col-md-6 right-title-details">
+            <div class="row">
+                <div class="input-icon m-1">
+                    <input type="text" class="form-control" placeholder="Patient Name" id="kt_datatable_search_query" (input)="SearchPatientListBlanceAmount($event.target.value)">
+                    <span>
+                        <i class="flaticon2-search-1 text-muted"></i>
+                    </span>
+                </div>
+                <div class="input-icon m-1">
+                    <input type="text"  class="form-control" placeholder="Patient ID" id="kt_datatable_search_query" (input)="SearchPatientListBlanceAmount($event.target.value)">
+                    <span>
+                        <i class="flaticon2-search-1 text-muted"></i>
+                    </span>
+                </div>
+                <div class="input-icon m-1">
+                    <input type="text" class="form-control" placeholder="Doctor Name" id="kt_datatable_search_query" (input)="SearchPatientListBlanceAmount($event.target.value)">
+                    <span>
+                        <i class="flaticon2-search-1 text-muted"></i>
+                    </span>
+                </div>
+             </div>
+        </div>
+
+    </div>
+</div>
+
+<div style="padding: 0 9px;">
+    <div class="card card-custom content d-flex flex-column flex-column-fluid">
+        <div class="card-body">
+            <div class="row">
+          
+                <div class="col-md-12" style="padding-left: 15px;">
+                    <div class="row pb-3"> 
+                    </div>
+
+                    <div class=" table table-responsive border">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center; width:10px;"></th>
+                                    <th class=" font-weight-bold align-text-top"  style="text-align: center;">Lab no</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;" >Date</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">Patient Name</th>
+                                    <th class=" font-weight-bold align-text-top"  style="text-align: center;">Doctor Name </th>
+                                    <th class=" font-weight-bold align-text-top"  style="text-align: center;">Collection Center</th>
+                                    <th class=" font-weight-bold align-text-top"  style="text-align: center;">Bill Amount</th>
+                                    <th class=" font-weight-bold align-text-top"  style="text-align: center;">Amount Paid</th> 
+                                    <th class=" font-weight-bold align-text-top"  style="text-align: center;">Balance</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Emp of PatientDataList">
+                                    <th class=" font-weight-bold align-text-top " style="text-align: center;width:10px;">
+                                        <label class="kt-checkbox">
+                                        <input  [ngModelOptions]="{standalone: true}"  [(ngModel)]="Emp.issent" type="checkbox">
+                                        
+                                        <span></span>
+                                    </label>
+                                    </th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center; " >{{Emp?.LABNO }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.PATIENT_DATE }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.PATIENT_Name }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.DOCTOR_Name }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.TESTMST_Name }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.CENTER_Name }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.TotalAmount }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.AMOUNTPAID }}</th>
+                                    <th class=" font-weight-bold align-text-top" style="text-align: center;">{{Emp?.BALANCEAMOUNT }}</th>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 *ngIf="this.PatientDataList[0] == null">No Data Available</h4>
+                    </div>
+                    <input  [ngModelOptions]="{standalone: true}"  [(ngModel)]="ShowAll" type="checkbox" > <label style="Color:red">Show All Records</label>
+                    <div class="row ml-2">
+                        <div class="ml-2">
+                            <a (click)="MakeBillClick()" class="btn btn-brand mr-2 btn-sm bot-sm">Make Bill</a>
+                            <button type="button" (click)="ShowHistory()"  class="btn btn-sm btn-primary m-2">Show History</button>
+                            <button type="button" (click)="Add('Add Payment')" class="btn btn-sm btn-primary m-2">Add Payment</button>
+                            <button type="button" (click)="Add('Refund Payment')" class="btn btn-sm btn-primary m-2">Refund Payment</button>
+                            <button type="button" (click)="Refresh()" class="btn btn-sm btn-primary m-2">Refresh</button>
+                            <button type="button" (click)="Close()" class="btn btn-sm btn-primary m-2">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+<div>
+    <form autocomplete="off" [formGroup]="PaymentGroup" class="form" #formDirective="ngForm">
+    <jw-modal id="custom-modal">
+        <div>
+            <div class="row">
+                <h4 class="col-5 h4-tit">{{PopupLabel}}</h4>
+                <hr/>
+                
+                <div class="row">
+               <mat-form-field class="col-md-4">
+                <mat-label>Patient Name </mat-label>
+                <input type="text" matInput formControlName="txtPatientName" placeholder="Patient Name" [readonly]="true">
+            </mat-form-field>
+               <mat-form-field class="col-md-4">
+                <mat-label>Lab No </mat-label>
+                <input type="text" matInput formControlName="txtLabNo" placeholder="Lab No" [readonly]="true">
+            </mat-form-field>
+               <mat-form-field class="col-md-4">
+                <mat-label>Patient Date</mat-label>
+                <input type="text" matInput formControlName="txtDate" placeholder="dd/MM/yyyy" [readonly]="true">
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Payment Mode</mat-label>
+                <mat-select formControlName="DropPaymentMode" >
+                    <mat-option>Select Payment Mode</mat-option>
+                    <mat-option *ngFor="let option of paymetModeList" [value]="option.Id">
+                        {{option.PaymentMode}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Bill Amount</mat-label>
+                <input type="text" matInput formControlName="txtBillAmount" placeholder="Bill Amount" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)" [readonly]="true">
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Amount Paid</mat-label>
+                <input type="text" matInput formControlName="txtAmountPaid" placeholder="Amount Paid" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)" [readonly]="true">
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Balance</mat-label>
+                <input type="text" matInput formControlName="txtBalance" placeholder="Balance" (keypress)="($event.charCode >= 48 && $event.charCode <= 58)" [readonly]="true">
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Enter Amount</mat-label>
+                <input type="text" matInput formControlName="txtAmount" placeholder="Enter Amount" (keypress)="keyPressNumbersDecimal($event)" (input)="EnterAmount($event.target.value)">
+            </mat-form-field>
+            <mat-form-field class="col-md-12">
+                <mat-label>Enter Remarks</mat-label>
+                <input type="text" matInput formControlName="txtRemarks" placeholder="Enter Remarks" >
+            </mat-form-field>
+        </div>
+            </div>
+        </div>
+        <div class="row  mt-4">
+            <a (click)="savePayment();" class="btn btn-brand mr-2 btn-sm bot-sm">Payment</a>
+            <a (click)="closePayment();" class="btn btn-brand mr-2  btn-sm bot-sm">Close</a>
+        </div>
+    </jw-modal>
+    <jw-modal id="PaymentHistory-modal">
+      
+        <div class="row">
+            <h4 class="col-5 h4-tit">Payment History</h4>
+            <hr/>
+    
+            <mat-form-field class="col-md-12">
+                <mat-label>Patient Name </mat-label>
+                <input type="text" matInput formControlName="PatientName" placeholder="Patient Name" [readonly]="true">
+            </mat-form-field>
+            <div class=" table table-responsive border">
+                <table class="table" id="PaymentHistory" >
+                    <thead>
+                        <tr>
+                            <th class=" font-weight-bold align-text-top" style="text-align: center; width:5%;">Sr No.</th>
+                            <th class=" font-weight-bold align-text-top"  style="text-align: center;width:30%;">User Name</th>
+                            <th class=" font-weight-bold align-text-top"  style="text-align: center;width:15%;">Payment Mode</th>
+                            <th class=" font-weight-bold align-text-top" style="text-align: center;width:40%;" >Paid date</th>
+                            <th class=" font-weight-bold align-text-top" style="text-align: center;width:10%;" >Amount Paid</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody style="Height:100px">
+                        <tr *ngFor="let Item of PaymentHistory">
+                         <th class=" font-weight-bold align-text-top" style="text-align:center; width:5%;">{{Item?.SRNO}}</th>  
+                         <th lass=" font-weight-bold align-text-top" style="text-align:center; width:30%;">{{Item?.UserName}}</th>  
+                         <th lass=" font-weight-bold align-text-top" style="text-align:center; width:15%;">{{Item?.PaymentMode}}</th>  
+                         <th lass=" font-weight-bold align-text-top" style="text-align:center; width:40%;">{{Item?.CurrentDate}}</th> 
+                         <th lass=" font-weight-bold align-text-top" style="text-align:center; width:10%;">{{Item?.AmountPaid}}</th> 
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <h4 *ngIf="this.PaymentHistory[0] == null">No Data Available</h4>
+            </div>
+        </div>
+    <div class="row  mt-4">
+        <a (click)="closeHistory();" class="btn btn-brand mr-2  btn-sm bot-sm">Close</a>
+        <a (click)="ExportData();" class="btn btn-brand mr-2  btn-sm bot-sm">Export</a>
+    </div>
+    </jw-modal>
+    
+</form>
+
+</div>
+</div>  

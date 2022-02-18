@@ -1,0 +1,14 @@
+.btn.btn-light:hover:not(.btn-text):not(:disabled):not(.disabled),
+.btn.btn-light:focus:not(.btn-text),
+.btn.btn-light.focus:not(.btn-text) {
+    color: #fbfdff;
+    background-color: #3699ff;
+}
+
+.card-title {
+    margin-bottom: 0;
+}
+
+.table-responsive {
+    overflow-x: hidden;
+}

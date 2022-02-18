@@ -1,0 +1,176 @@
+.box {
+    width: 20px;
+    height: 20px;
+    margin: 4px;
+}
+
+.no-entry-done {
+    background: #ffa0a0;
+}
+
+.entry-done {
+    background: rgb(230, 200, 118);
+}
+
+.Printout {
+    background: cyan;
+}
+
+.greenyellow {
+    background: rgb(133, 173, 73);
+}
+
+.Authenticate {
+    background: rgb(183, 112, 224);
+}
+
+.Re-Sample {
+    background: rgb(240, 237, 100);
+}
+
+.Re-Run {
+    background: rgb(241, 94, 180);
+}
+
+.Validated {
+    background: rgb(240, 174, 130);
+}
+
+.Integration {
+    background: rgb(34, 207, 230);
+}
+
+tbody {
+    display: block;
+    overflow: auto;
+    height: 500px;
+    width: 100%;
+}
+
+thead tr {
+    display: table;
+    width: 100%;
+    //table-layout: fixed;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+legend {
+    color: #151515;
+    padding: 3px 10px;
+    width: auto;
+    margin-left: 25px;
+    font-size: 16px
+}
+
+.mat-autocomplete-panel {
+    min-width: 212px !important;
+    max-width: 280px !important;
+    overflow: auto;
+    visibility: hidden;
+    max-width: none;
+    max-height: 256px;
+    position: relative;
+    width: 100%;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.mat-autocomplete-panel {
+    min-width: 250px !important;
+}
+
+.title {
+    color: #151515;
+}
+
+.header-com {
+    background: #1a1a27;
+    margin-bottom: 0px;
+}
+
+.header-title-com {
+    background: #5fc2ff40;
+}
+
+.card.card-custom>.card-body {
+    padding: 0rem 2.25rem;
+}
+
+.btn.btn-success {
+    color: #ffffff;
+    background-color: #3699ff;
+    border-color: #3699ff;
+}
+
+.content {
+    padding: 7px 0;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.card.card-custom .card-body {
+    padding: 0rem 0.25rem;
+}
+
+.form-control-sm {
+    height: 28px;
+}
+
+.test-name-col {
+    color: #8e50f1;
+}
+
+.field-name-col {
+    color: #f16e11;
+    ;
+}
+
+.selectedRow a {
+    font-weight: bold;
+}
+
+.selectedRow {
+    background: #59b9fd8c;
+    font-weight: bold;
+}
+
+.form-control-md {
+    height: 45px;
+}
+
+.icon-nm {
+    font-size: 0.9rem !important;
+    color: #f73131;
+}
+
+.i_test {
+    padding: 7px 1px 0;
+    color: #1a1a27;
+}
+
+.right-title-details {
+    padding: 6px;
+    color: #fff;
+    text-align: right;
+}
+
+// .gradient-bg {
+//     background: linear-gradient(to right, #ffc837, #ff8008);
+// }
+.title-heding-col {
+    padding: 7px 18px 0;
+    color: #1a1a27;
+}
+
+.gradient-head-bg {
+    background: linear-gradient(to right, #141e30, #243b55);
+}

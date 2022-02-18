@@ -1,0 +1,39 @@
+.card.card-custom>.card-body {
+    padding: 20px;
+}
+
+tbody {
+    display: block;
+    overflow: auto;
+    height: 400px;
+    width: 100%;
+}
+
+thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table th {
+    width: 70px;
+    
+}
+
+fieldset {
+    border: 1px solid #ccc;
+}
+
+legend {
+    color: #151515;
+    padding: 1px 10px;
+    width: auto;
+    margin-left: 25px;
+    font-size: 16px
+}

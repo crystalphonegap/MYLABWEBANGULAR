@@ -1,0 +1,100 @@
+.box {
+    width: 20px;
+    height: 20px;
+    margin: 4px;
+}
+
+.no-entry-done {
+    background: #ffa0a0;
+}
+
+.entry-done {
+    background: rgb(230, 200, 118);
+}
+
+.Printout {
+    background: cyan;
+}
+
+.greenyellow {
+    background: rgb(133, 173, 73);
+}
+
+.Authenticate {
+    background: rgb(183, 112, 224);
+}
+
+.Re-Sample {
+    background: rgb(240, 237, 100);
+}
+
+.Re-Run {
+    background: rgb(241, 94, 180);
+}
+
+.Validated {
+    background: rgb(240, 174, 130);
+}
+
+.Integration {
+    background: rgb(34, 207, 230);
+}
+
+tbody {
+    display: block;
+    overflow: auto;
+    height: 400px;
+    width: 100%;
+}
+
+thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table th {
+    width: 100px;
+}
+
+.card.card-custom .card-body {
+    padding: 0rem 0.25rem;
+}
+
+.content {
+    padding: 7px 0;
+}
+
+.i_test {
+    padding: 7px 1px 0;
+    color: #1a1a27;
+}
+
+.i1_home {
+    padding: 7px 7px 0;
+    color: #1a1a27;
+}
+
+.right-title-details {
+    padding: 6px;
+    color: #fff;
+    text-align: right;
+}
+
+// .gradient-bg {
+//     background: linear-gradient(to right, #ffc837, #ff8008);
+// }
+.title-heding-col {
+    padding: 7px 18px 0;
+    color: #1a1a27;
+}
+
+.gradient-head-bg {
+    background: linear-gradient(to right, #141e30, #243b55);
+}
